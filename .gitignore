@@ -37,4 +37,3 @@ yarn-error.log*
 .DS_Store
 *.pem
 yarn.lock
-apps/web/app/page.module.scss
