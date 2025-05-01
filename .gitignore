@@ -36,3 +36,5 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+yarn.lock
+apps/web/app/page.module.scss

@@ -1,0 +1,37 @@
+.play {
+  /* background-color: #000; */
+  white-space: no-wrap;
+  text-overflow: ellipsis;
+
+  .p-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .p-grid {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "header header header"
+      "main main . sidebar"
+      "footer footer footer";
+
+    > div {
+      height: 200px;
+      background-color: #eee;
+      border: 1px solid #ccc;
+    }
+
+    > .item-one {
+      /* grid-area: sidebar; */
+    }
+    > .item-two {
+      /* grid-area: main; */
+    }
+    > .item-three {
+      /* grid-area: sidebarleft; */
+    }
+  }
+}
