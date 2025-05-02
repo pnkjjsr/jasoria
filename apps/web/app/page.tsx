@@ -1,4 +1,5 @@
 import Image, { type ImageProps } from "next/image";
+import Header from "@/common/basic/header";
 
 import styles from "./page.module.scss";
 
@@ -20,8 +21,9 @@ const ThemeImage = (props: Props) => {
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}></main>
-    </div>
+    <>
+      <Header />
+      <main></main>
+    </>
   );
 }
