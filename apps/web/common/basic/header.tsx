@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Logo from "@repo/shared/components/logos/header";
+import getTheme, { setTheme } from "@repo/shared/utils/theme";
 
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -13,8 +14,19 @@ const labels = {
 
 export default function header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const getThemeFromStorage = getTheme();
+
+    if (getThemeFromStorage === "dark") {
+      setIsDarkMode(true);
+      document.documentElement.classList.add("dark");
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
+    setTheme(isDarkMode ? "dark" : "light");
   };
   return (
     <header className="w-full flex  pt-2 px-2">
