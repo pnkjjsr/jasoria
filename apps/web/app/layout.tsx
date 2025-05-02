@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-
-import Header from "@repo/shared/common/basic/header";
+import Header from "@/common/basic/header";
 
 import "./globals.css";
 
