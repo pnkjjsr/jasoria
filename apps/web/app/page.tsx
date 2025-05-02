@@ -1,5 +1,7 @@
 import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/shared/button";
+// import { Button } from "@repo/shared/button";
+import { Button } from "@/components/ui/button";
+
 import styles from "./page.module.scss";
 
 type Props = Omit<ImageProps, "src"> & {
@@ -22,7 +24,9 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <h1 className="text-3xl font-bold underline">Hello, Next.js With Tailwind!</h1>
+        <h1 className="text-3xl font-bold underline">
+          Hello, Next.js With Tailwind!
+        </h1>
         <ThemeImage
           className={styles.logo}
           srcLight="turborepo-dark.svg"
@@ -64,9 +68,9 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
+        <Button className={styles.secondary}>Open alert</Button>
+
+        <Button variant="outline">Click me ShadeCn</Button>
       </main>
       <footer className={styles.footer}>
         <a
