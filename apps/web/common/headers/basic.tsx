@@ -41,7 +41,7 @@ export default function header() {
   };
   return (
     <header className="w-full flex  pt-2 px-2">
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center py-4">
         <Logo path={renderLogoPath()} width={286} height={55} alt="Jasoria" />
       </div>
       <div className="float-right">

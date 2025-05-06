@@ -159,3 +159,10 @@ a {
     @apply bg-background text-foreground;
   }
 }
+
+html.dark > body {
+  background: url("/bg-dark.png") center bottom / cover no-repeat;
+}
+html.light > body {
+  background: url("/bg-light.png") center top / cover no-repeat;
+}
