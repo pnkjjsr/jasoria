@@ -10,6 +10,8 @@ const navigation = [
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  console.log(mobileMenuOpen);
+  
 
   return (
     <div className="bg-white">
