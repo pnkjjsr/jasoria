@@ -105,6 +105,87 @@ export default function Play() {
   const [toggle, setToggle] = useState(true);
   const handleToggle = () => setToggle(!toggle);
 
+  // Two Sum function
+  // Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+  const twoSum = (nums: number[], target: number) => {
+    const map = new Map<number, number>();
+    for (let i = 0; i < nums.length; i++) {
+      const complement = target - nums[i];
+      if (map.has(complement)) {
+        return [map.get(complement)!, i];
+      }
+      map.set(nums[i], i);
+    }
+  };
+
+  // Create Hello World Function
+  const helloWorld = (user: string | null = null) => {
+    return function (name: string | null = null) {
+      if (name) {
+        return `Hello World! ${name}`;
+      }
+      return `Hello World! ${user}`;
+    };
+  };
+  const greet = helloWorld("defaultUser");
+
+  // Create a counter function
+  const createCounter = (num: number) => {
+    return function () {
+      return num++;
+    };
+  };
+  const counter = createCounter(10);
+  console.log("Counter: ", counter()); // 10
+  console.log("Counter: ", counter()); // 11
+  console.log("Counter: ", counter()); // 12
+
+  // Tobe or not tobe function
+  var expect = function (val: any) {
+    return {
+      toBe: (otherVal: any) => {
+        if (val === otherVal) {
+          return { value: true };
+        } else {
+          return console.log("Not Equal");
+        }
+      },
+
+      notToBe: (otherVal: any) => {
+        if (val !== otherVal) {
+          return { value: true };
+        } else {
+          return console.log("Equal");
+        }
+      },
+    };
+  };
+  expect(5).toBe(5); // true
+  expect(5).notToBe(5); // throws "Equal"
+
+  // counte 2 with increment, decrement and reset methods
+  const createCounter2 = (num: number) => {
+    const initialNum: number = num;
+    return {
+      increment: () => {
+        num++;
+        return num;
+      },
+      decrement: () => {
+        num--;
+        return num;
+      },
+      reset: () => {
+        num = initialNum;
+        return num;
+      },
+    };
+  };
+  const counter2 = createCounter2(5);
+  console.log(counter2.increment()); // 6
+  console.log(counter2.decrement()); // 5
+  console.log(counter2.reset()); // 5
+
   return (
     <ThemeProvider>
       <div className="play">
@@ -155,6 +236,21 @@ export default function Play() {
           <div className="item-one">item 1</div>
           <div className="item-two">item 2</div>
           <div className="item-three">item 3</div>
+        </section>
+
+        <section>
+          <span>Two Sum Function : </span>
+          {twoSum([2, 7, 11, 15], 17)?.map((item) => (
+            <span key={item} className="p-1 bg-gray-200 rounded-lg">
+              {item}
+            </span>
+          ))}
+        </section>
+
+        <section>
+          <h2>Create Hello World Function</h2>
+          <p className="text-sm/6 text-gray-900">{helloWorld("Pawan")()}</p>
+          <p className="text-sm/6 text-gray-900">{greet("Pankaj")}</p>
         </section>
       </div>
     </ThemeProvider>

@@ -48,7 +48,10 @@ export default function header() {
         {!isUserPrefersDarkMode && (
           <div className="flex items-center space-x-2">
             <Switch id="airplane-mode" onClick={toggleDarkMode} />
-            <Label className="w-[34]" htmlFor="airplane-mode">
+            <Label
+              className="w-[34] transition delay-100 duration-200 ease-in-out"
+              htmlFor="airplane-mode"
+            >
               {isDarkMode ? labels.dark : labels.light}
             </Label>
           </div>
