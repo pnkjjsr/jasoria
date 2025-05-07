@@ -4,8 +4,12 @@ import React, { useState, useEffect } from "react";
 import Logo from "@repo/shared/components/logos/header";
 import getTheme, { setTheme } from "@repo/shared/utils/theme";
 
+import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+import { DrawerDialogDemo } from "@/components/modals/login";
 
 const labels = {
   dark: "Dark",
@@ -21,18 +25,20 @@ export default function header() {
 
     if (getThemeFromStorage === "dark") {
       setIsDarkMode(true);
-      document.documentElement.classList.add("dark");
-    }
+      setTheme("dark");
+    } else setTheme("light");
 
     // Check if the user has a system preference for dark mode
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
     setIsUserPrefersDarkMode(mediaQuery.matches);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleDarkMode = () => {
-    setIsDarkMode((prevMode) => !prevMode);
-    setTheme(isDarkMode ? "dark" : "light");
+    setIsDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      setTheme(newMode ? "dark" : "light");
+      return newMode;
+    });
   };
 
   const renderLogoPath = () => {
@@ -41,12 +47,12 @@ export default function header() {
   };
   return (
     <header className="w-full flex  pt-2 px-2">
-      <div className="w-full flex justify-center py-4">
+      <div className="w-full flex justify-center md:py-4">
         <Logo path={renderLogoPath()} width={286} height={55} alt="Jasoria" />
       </div>
-      <div className="float-right">
-        {!isUserPrefersDarkMode && (
-          <div className="flex items-center space-x-2">
+      <div className="float-right flex justify-center space-x-2 items-start ">
+        {isUserPrefersDarkMode && (
+          <div className="flex items-center space-x-2 pt-2">
             <Switch id="airplane-mode" onClick={toggleDarkMode} />
             <Label
               className="w-[34] transition delay-100 duration-200 ease-in-out"
@@ -56,6 +62,13 @@ export default function header() {
             </Label>
           </div>
         )}
+
+        <DrawerDialogDemo />
+
+        {/* <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar> */}
       </div>
     </header>
   );

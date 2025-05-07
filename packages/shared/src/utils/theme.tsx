@@ -17,13 +17,13 @@ export function setTheme(theme: "dark" | "light") {
   // Apply the theme to the document
   // set localStorage theme to dark or light based on user preference
   if (theme === "dark") {
-    document.documentElement.classList.remove("dark");
-    document.documentElement.classList.add("light");
-    localStorage.setItem("theme", "light");
-  } else {
     document.documentElement.classList.remove("light");
     document.documentElement.classList.add("dark");
     localStorage.setItem("theme", "dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+    document.documentElement.classList.add("light");
+    localStorage.setItem("theme", "light");
   }
   document.documentElement.classList.add("transition-colors", "duration-300");
 }

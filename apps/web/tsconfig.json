@@ -9,7 +9,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/common/*": ["common/*"]
+      "@/common/*": ["src/common/*"],
+      "@/styles/*": ["src/styles/*"]
     }
   },
   "include": [
