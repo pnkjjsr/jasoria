@@ -51,17 +51,15 @@ export default function header() {
         <Logo path={renderLogoPath()} width={286} height={55} alt="Jasoria" />
       </div>
       <div className="float-right flex justify-center space-x-2 items-start ">
-        {isUserPrefersDarkMode && (
-          <div className="flex items-center space-x-2 pt-2">
-            <Switch id="airplane-mode" onClick={toggleDarkMode} />
-            <Label
-              className="w-[34] transition delay-100 duration-200 ease-in-out"
-              htmlFor="airplane-mode"
-            >
-              {isDarkMode ? labels.dark : labels.light}
-            </Label>
-          </div>
-        )}
+        <div className="flex items-center space-x-2 pt-2">
+          <Switch id="airplane-mode" onClick={toggleDarkMode} />
+          <Label
+            className="w-[34] transition delay-100 duration-200 ease-in-out"
+            htmlFor="airplane-mode"
+          >
+            {isDarkMode ? labels.dark : labels.light}
+          </Label>
+        </div>
 
         <DrawerDialogDemo />
 
