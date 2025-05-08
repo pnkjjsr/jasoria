@@ -1,4 +1,3 @@
-import Image, { type ImageProps } from "next/image";
 import Header from "@/common/headers/basic";
 import Nav from "@/common/nav/basic";
 

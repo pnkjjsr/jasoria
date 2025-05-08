@@ -9,8 +9,10 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/common/*": ["src/common/*"],
-      "@/styles/*": ["src/styles/*"]
+      "@/common/*": ["./src/common/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/redux/*": ["./src/redux/*"],
+      "@/styles/*": ["./src/styles/*"]
     }
   },
   "include": [

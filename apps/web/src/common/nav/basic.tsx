@@ -49,7 +49,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 export default function NavigationMenuDemo() {
   return (
-    <nav className="lg:w-1/2 md:w-3/4 mx-2 md:mx-auto bg-background p-4 mt-4 border rounded-4xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-105">
+    <nav className="lg:w-1/2 md:w-3/4 mx-2 md:mx-auto bg-background p-4 mt-4 border rounded-4xl shadow-lg transition-transform duration-300 ease-in-out hover:shadow-2xl hover:scale-105">
       <NavigationMenu className="w-auto mx-auto">
         <NavigationMenuList>
           <NavigationMenuItem>
