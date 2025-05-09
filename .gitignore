@@ -40,3 +40,5 @@ yarn.lock
 package-lock.json
 apps/web/app/play/page.tsx
 apps/web/app/play/style.css
+apps/web/app/test/page.tsx
+apps/web/app/test/user/page.tsx

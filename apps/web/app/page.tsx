@@ -13,15 +13,17 @@ export default function Home() {
 
       <main className="h-1000">
         <motion.div
-          initial={{ opacity: 0, scale: .8 }}
+          initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
             duration: 0.4,
-            scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+            scale: { type: "spring", visualDuration: 0.8, bounce: 0.5 },
           }}
         >
-          <div className="flex h-screen items-center justify-center">
-            <h1 className="text-4xl font-bold">Welcome to Jasoria</h1>
+          <div className="flex flex-col items-center justify-center mt-10 lg:mt-20">
+            <h1 className="xl:w-7xl text-2xl md:text-5xl/15 lg:text-6xl/20 block text-center font-semibold">
+              Transforming Small Businesses <br /> With A Single Smart Platform
+            </h1>
           </div>
         </motion.div>
       </main>
