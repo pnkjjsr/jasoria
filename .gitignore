@@ -38,3 +38,5 @@ yarn-error.log*
 *.pem
 yarn.lock
 package-lock.json
+apps/web/app/play/page.tsx
+apps/web/app/play/style.css
