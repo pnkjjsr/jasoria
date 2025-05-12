@@ -4,19 +4,17 @@ import React, { useState, useEffect } from "react";
 import Logo from "@repo/shared/components/logos/header";
 import getTheme, { setTheme } from "@repo/shared/utils/theme";
 
-import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-import { DrawerDialogDemo } from "@/components/modals/login";
+import UserLoggedInStatus from "@/components/auth/UserLoggedInStatus";
 
 const labels = {
   dark: "Dark",
   light: "Light",
 };
 
-export default function header() {
+export default function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isUserPrefersDarkMode, setIsUserPrefersDarkMode] = useState(false);
 
@@ -60,13 +58,7 @@ export default function header() {
             {isDarkMode ? labels.dark : labels.light}
           </Label>
         </div>
-
-        <DrawerDialogDemo />
-
-        {/* <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar> */}
+        <UserLoggedInStatus />
       </div>
     </header>
   );

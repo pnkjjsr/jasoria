@@ -9,7 +9,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/common/*": ["./src/common/*"],
+      "@/layout/*": ["src/layout/*"],
       "@/lib/*": ["./src/lib/*"],
       "@/redux/*": ["./src/redux/*"],
       "@/styles/*": ["./src/styles/*"]

@@ -1,8 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -21,10 +19,11 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
-export function DrawerDialogDemo() {
+import GoogleLoginButton from "@/components/auth/GoogleLoginButton";
+
+export function DrawerDialogLogin() {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -38,10 +37,11 @@ export function DrawerDialogDemo() {
           <DialogHeader>
             <DialogTitle>Login</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when you're done.
+              Enjoy free services, Just log in easily.
             </DialogDescription>
           </DialogHeader>
-          <ProfileForm />
+          <GoogleLoginButton />
+          {/* <LoginForm /> */}
         </DialogContent>
       </Dialog>
     );
@@ -56,10 +56,11 @@ export function DrawerDialogDemo() {
         <DrawerHeader className="text-left">
           <DrawerTitle>Login</DrawerTitle>
           <DrawerDescription>
-            Make changes to your profile here. Click save when you're done.
+            Enjoy free services, Just log in easily.
           </DrawerDescription>
         </DrawerHeader>
-        <ProfileForm className="px-4" />
+        <GoogleLoginButton />
+        {/* <LoginForm className="px-4" /> */}
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline">Cancel</Button>
@@ -67,21 +68,5 @@ export function DrawerDialogDemo() {
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
-  );
-}
-
-function ProfileForm({ className }: React.ComponentProps<"form">) {
-  return (
-    <form className={cn("grid items-start gap-4", className)}>
-      <div className="grid gap-2">
-        <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" defaultValue="shadcn@example.com" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="username">Username</Label>
-        <Input id="username" defaultValue="@shadcn" />
-      </div>
-      <Button type="submit">Save changes</Button>
-    </form>
   );
 }

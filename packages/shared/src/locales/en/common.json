@@ -1,0 +1,11 @@
+{
+  "header": {
+    "welcome": "Welcome to Our Application",
+    "search": "Search"
+  },
+  "footer": {
+    "contact": "Contact Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  }
+}

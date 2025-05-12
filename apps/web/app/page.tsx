@@ -1,7 +1,7 @@
 import * as motion from "motion/react-client";
 
-import Header from "@/common/headers/basic";
-import Nav from "@/common/nav/basic";
+import Header from "@/layout/headers/basic";
+import Nav from "@/layout/nav/basic";
 
 export default function Home() {
   return (
