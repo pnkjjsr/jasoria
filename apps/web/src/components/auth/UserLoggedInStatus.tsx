@@ -22,8 +22,8 @@ interface userdata {
   }[];
 }
 
-export default function UserLoggedInStatus(props: any) {
-  const [isLoggedIn, setIsloggedIn] = useState<boolean | any>();
+export default function UserLoggedInStatus() {
+  const [isLoggedIn, setIsloggedIn] = useState<boolean | undefined>();
   const [user, setUser] = useState({} as userdata);
 
   const handleLogout = async () => {
