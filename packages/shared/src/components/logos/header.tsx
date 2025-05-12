@@ -10,5 +10,5 @@ interface LogoProps {
 
 export default function logo(props: LogoProps) {
   const { path, width, height, alt } = props;
-  return <Image src={path} width={width} height={height} alt={alt} />;
+  return <Image priority src={path} width={width} height={height} alt={alt} />;
 }

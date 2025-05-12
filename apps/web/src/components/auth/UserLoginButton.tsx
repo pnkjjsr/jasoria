@@ -22,7 +22,7 @@ interface userdata {
   }[];
 }
 
-export default function UserLoggedInStatus() {
+export default function UserLoginButton() {
   const [isLoggedIn, setIsloggedIn] = useState<boolean | undefined>();
   const [user, setUser] = useState({} as userdata);
 
@@ -65,6 +65,7 @@ export default function UserLoggedInStatus() {
   if (isLoggedIn === undefined) {
     return <Skeleton className="h-8 w-8 rounded-full" />;
   }
+  
 
   return (
     <>

@@ -7,7 +7,7 @@ import getTheme, { setTheme } from "@repo/shared/utils/theme";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
-import UserLoggedInStatus from "@/components/auth/UserLoggedInStatus";
+import UserLoginButton from "@/components/auth/UserLoginButton";
 
 const labels = {
   dark: "Dark",
@@ -58,7 +58,7 @@ export default function Header() {
             {isDarkMode ? labels.dark : labels.light}
           </Label>
         </div>
-        <UserLoggedInStatus />
+        <UserLoginButton />
       </div>
     </header>
   );
