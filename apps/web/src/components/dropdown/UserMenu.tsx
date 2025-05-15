@@ -8,21 +8,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import { userType } from "@repo/shared/types/auth";
+
 interface propsData {
-  user: {
-    email: string;
-    displayName: string;
-    photoURL: string;
-    uid: string;
-    phoneNumber: string;
-    providerData: {
-      providerId: string;
-      uid: string;
-      displayName: string;
-      email: string;
-      phoneNumber: string;
-    }[];
-  };
+  user: userType;
   logout: VoidFunction;
 }
 

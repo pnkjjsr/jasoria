@@ -1,39 +1,29 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 
 import { auth } from "@repo/shared/lib/firebase/firebaseConfig";
 
+import { useAppDispatch } from "@repo/shared/redux/hooks";
+import { updateUser } from "@repo/shared/redux/slices/user/userSlice";
 
 import { DrawerDialogLogin } from "@/components/modals/login";
 import { Skeleton } from "@/components/ui/skeleton";
-
-
 import UserMenu from "@/components/dropdown/UserMenu";
 
-interface userdata {
-  email: string;
-  displayName: string;
-  photoURL: string;
-  uid: string;
-  phoneNumber: string;
-  providerData: {
-    providerId: string;
-    uid: string;
-    displayName: string;
-    email: string;
-    phoneNumber: string;
-  }[];
-}
+import { userType } from "@repo/shared/types/auth";
 
 export default function UserLoginButton() {
+  const dispatch = useAppDispatch();
+
   const [isLoggedIn, setIsloggedIn] = useState<boolean | undefined>();
-  const [user, setUser] = useState({} as userdata);
+  const [user, setUser] = useState({} as userType);
 
   const handleLogout = async () => {
     try {
       await auth.signOut();
       setIsloggedIn(false);
-      setUser({} as userdata);
+      setUser({} as userType);
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -42,8 +32,7 @@ export default function UserLoginButton() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setIsloggedIn(true);
-        setUser({
+        const userData = {
           email: user.email || "",
           displayName: user.displayName || "",
           photoURL: user.photoURL || "",
@@ -56,7 +45,11 @@ export default function UserLoginButton() {
             email: provider.email || "",
             phoneNumber: provider.phoneNumber || "",
           })),
-        });
+        };
+        setIsloggedIn(true);
+        setUser(userData);
+
+        dispatch(updateUser(userData));
       } else {
         setIsloggedIn(false);
       }
@@ -69,5 +62,13 @@ export default function UserLoginButton() {
     return <Skeleton className="h-8 w-8 rounded-full" />;
   }
 
-  return <>{user?.photoURL ? <UserMenu user={user} logout={handleLogout} /> : <DrawerDialogLogin />}</>;
+  return (
+    <>
+      {user?.photoURL ? (
+        <UserMenu user={user} logout={handleLogout} />
+      ) : (
+        <DrawerDialogLogin />
+      )}
+    </>
+  );
 }

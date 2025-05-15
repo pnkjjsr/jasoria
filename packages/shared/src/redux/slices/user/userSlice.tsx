@@ -2,10 +2,13 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { createAppSlice } from "../../createAppSlice";
 import type { AppThunk } from "../../store";
+
+import { fetchUser } from "./userAPI";
+
 import { types } from "util";
 
 export interface UserSliceState {
-  user: null | object;
+  user: object | null;
 }
 
 const initialState: UserSliceState = {
@@ -19,6 +22,23 @@ export const userSlice = createAppSlice({
     updateUser: create.reducer((state, action: PayloadAction<object>) => {
       state.user = action.payload;
     }),
+    loggedInUsers: create.asyncThunk<object>(
+      async () => {
+        const response = await fetchUser();
+        return response;
+      },
+      {
+        pending: (state) => {
+          // state.status = "loading";
+        },
+        fulfilled: (state, action) => {
+          state.user = action.payload;
+        },
+        rejected: (state) => {
+          // state.status = "failed";
+        },
+      }
+    ),
   }),
 
   selectors: {
@@ -26,5 +46,5 @@ export const userSlice = createAppSlice({
   },
 });
 
-export const { updateUser } = userSlice.actions;
+export const { updateUser, loggedInUsers } = userSlice.actions;
 export const { selectUser } = userSlice.selectors;
