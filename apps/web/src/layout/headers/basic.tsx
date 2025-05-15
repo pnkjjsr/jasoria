@@ -7,7 +7,7 @@ import getTheme, { setTheme } from "@repo/shared/utils/theme";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
-import UserLoginButton from "@/components/auth/UserLoginButton";
+import UserLoginButton from "@repo/shared/components/auth/UserLoginButton";
 
 const labels = {
   dark: "Dark",

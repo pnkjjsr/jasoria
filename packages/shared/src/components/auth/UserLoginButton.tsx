@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { auth } from "@/lib/firebase/firebaseConfig";
+import { auth } from "@repo/shared/lib/firebase/firebaseConfig";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 import { DrawerDialogLogin } from "@/components/modals/login";
 import { Skeleton } from "@/components/ui/skeleton";
+
+
+import UserMenu from "@/components/dropdown/UserMenu";
 
 interface userdata {
   email: string;
@@ -65,18 +68,6 @@ export default function UserLoginButton() {
   if (isLoggedIn === undefined) {
     return <Skeleton className="h-8 w-8 rounded-full" />;
   }
-  
 
-  return (
-    <>
-      {user?.photoURL ? (
-        <Avatar className="cursor-pointer" onClick={handleLogout}>
-          <AvatarImage src={user.photoURL} alt={user.displayName} />
-          <AvatarFallback>{user.displayName}</AvatarFallback>
-        </Avatar>
-      ) : (
-        <DrawerDialogLogin />
-      )}
-    </>
-  );
+  return <>{user?.photoURL ? <UserMenu user={user} logout={handleLogout} /> : <DrawerDialogLogin />}</>;
 }

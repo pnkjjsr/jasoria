@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 
-import GoogleLoginButton from "@/components/auth/GoogleLoginButton";
+import GoogleLoginButton from "@repo/shared/components/auth/GoogleLoginButton";
 
 export function DrawerDialogLogin() {
   const [open, setOpen] = React.useState(false);
