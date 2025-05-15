@@ -2,13 +2,11 @@ import React from "react";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { CircleUserRound } from "lucide-react";
 
-import { useAppSelector, useAppDispatch } from "@repo/shared/redux/hooks";
-import {
-  selectUser,
-  updateUser,
-} from "@repo/shared/redux/slices/user/userSlice";
+import { useAppDispatch } from "@repo/shared/redux/hooks";
+import { updateUser } from "@repo/shared/redux/slices/user/userSlice";
 
 import { auth } from "@repo/shared/lib/firebase/firebaseConfig";
+import { mapUser } from "@repo/shared/types/auth";
 
 import { Button } from "@/components/ui/button";
 
@@ -23,20 +21,7 @@ export default function GoogleLoginButton() {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential?.accessToken;
       const user = result.user;
-      const userData = {
-        email: user.email || "",
-        displayName: user.displayName || "",
-        photoURL: user.photoURL || "",
-        uid: user.uid,
-        phoneNumber: user.phoneNumber || "",
-        providerData: user.providerData.map((provider) => ({
-          providerId: provider.providerId,
-          uid: provider.uid,
-          displayName: provider.displayName || "",
-          email: provider.email || "",
-          phoneNumber: provider.phoneNumber || "",
-        })),
-      };
+      const userData = mapUser(user);
 
       dispatch(updateUser(userData));
     } catch (error) {

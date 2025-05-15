@@ -1,3 +1,5 @@
+import type { User } from "firebase/auth";
+
 export interface userType {
   email: string;
   displayName: string;
@@ -13,7 +15,7 @@ export interface userType {
   }[];
 }
 
-export function initUserData(user: userType) {
+export function mapUser(user: User): userType {
   return {
     email: user.email || "",
     displayName: user.displayName || "",

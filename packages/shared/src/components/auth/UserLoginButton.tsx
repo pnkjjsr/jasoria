@@ -6,12 +6,11 @@ import { auth } from "@repo/shared/lib/firebase/firebaseConfig";
 
 import { useAppDispatch } from "@repo/shared/redux/hooks";
 import { updateUser } from "@repo/shared/redux/slices/user/userSlice";
+import { userType, mapUser } from "@repo/shared/types/auth";
 
 import { DrawerDialogLogin } from "@/components/modals/login";
 import { Skeleton } from "@/components/ui/skeleton";
 import UserMenu from "@/components/dropdown/UserMenu";
-
-import { userType } from "@repo/shared/types/auth";
 
 export default function UserLoginButton() {
   const dispatch = useAppDispatch();
@@ -32,20 +31,8 @@ export default function UserLoginButton() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const userData = {
-          email: user.email || "",
-          displayName: user.displayName || "",
-          photoURL: user.photoURL || "",
-          uid: user.uid,
-          phoneNumber: user.phoneNumber || "",
-          providerData: user.providerData.map((provider) => ({
-            providerId: provider.providerId,
-            uid: provider.uid,
-            displayName: provider.displayName || "",
-            email: provider.email || "",
-            phoneNumber: provider.phoneNumber || "",
-          })),
-        };
+        const userData = mapUser(user);
+
         setIsloggedIn(true);
         setUser(userData);
 
