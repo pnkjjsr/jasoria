@@ -7,12 +7,8 @@ import getTheme, { setTheme } from "@repo/shared/utils/theme";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
+import { common as locale } from "@repo/shared/locale/index";
 import UserLoginButton from "@repo/shared/components/auth/UserLoginButton";
-
-const labels = {
-  dark: "Dark",
-  light: "Light",
-};
 
 export default function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -55,7 +51,7 @@ export default function Header() {
             className="w-[34] transition delay-100 duration-200 ease-in-out"
             htmlFor="airplane-mode"
           >
-            {isDarkMode ? labels.dark : labels.light}
+            {isDarkMode ? locale.theme_dark : locale.theme_light}
           </Label>
         </div>
         <UserLoginButton />

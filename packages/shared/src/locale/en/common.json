@@ -1,11 +1,8 @@
 {
-  "header": {
-    "welcome": "Welcome to Our Application",
-    "search": "Search"
-  },
-  "footer": {
-    "contact": "Contact Us",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
-  }
+  "theme_dark": "Dark",
+  "theme_light": "Light",
+  "btn_login": "Login",
+  "btn_cancel": "Cancel",
+  "login_heading": "Login",
+  "login_sub": "Enjoy free services, Just log in easily."
 }

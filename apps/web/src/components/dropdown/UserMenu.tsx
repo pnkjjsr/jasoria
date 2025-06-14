@@ -6,6 +6,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu";
 
 import { userType } from "@repo/shared/types/auth";
@@ -34,13 +37,13 @@ export default function UserMenu(props: propsData) {
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
-          {/* <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator /> */}
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
+            {/* <DropdownMenuItem>Settings</DropdownMenuItem> */}
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
           <DropdownMenuItem className="cursor-pointer" onClick={logout}>
             Log out
           </DropdownMenuItem>

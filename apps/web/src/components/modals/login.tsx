@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 
+import { common as locale } from "@repo/shared/locale/index";
 import GoogleLoginButton from "@repo/shared/components/auth/GoogleLoginButton";
 
 export function DrawerDialogLogin() {
@@ -31,14 +32,12 @@ export function DrawerDialogLogin() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button>Login</Button>
+          <Button>{locale.btn_login}</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Login</DialogTitle>
-            <DialogDescription>
-              Enjoy free services, Just log in easily.
-            </DialogDescription>
+            <DialogTitle>{locale.login_heading}</DialogTitle>
+            <DialogDescription>{locale.login_sub}</DialogDescription>
           </DialogHeader>
           <GoogleLoginButton />
           {/* <LoginForm /> */}
@@ -50,20 +49,18 @@ export function DrawerDialogLogin() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button>Login</Button>
+        <Button>{locale.btn_login}</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>Login</DrawerTitle>
-          <DrawerDescription>
-            Enjoy free services, Just log in easily.
-          </DrawerDescription>
+          <DrawerTitle>{locale.login_heading}</DrawerTitle>
+          <DrawerDescription>{locale.login_sub}</DrawerDescription>
         </DrawerHeader>
         <GoogleLoginButton />
         {/* <LoginForm className="px-4" /> */}
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline">{locale.btn_cancel}</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
