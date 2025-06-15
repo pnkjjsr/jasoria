@@ -10,7 +10,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu";
+import { DrawerDialogProfile } from "@/components/modals/profile";
 
+import { common as locale } from "@repo/shared/locale/index";
 import { userType } from "@repo/shared/types/auth";
 
 interface propsData {
@@ -20,6 +22,7 @@ interface propsData {
 
 export default function UserMenu(props: propsData) {
   const { user, logout } = props;
+  const [open, setOpen] = React.useState(false);
 
   return (
     <>
@@ -37,18 +40,24 @@ export default function UserMenu(props: propsData) {
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuLabel>{locale.account_menu.heading}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => setOpen(true)}
+            >
+              {locale.account_menu.profile}
+            </DropdownMenuItem>
             {/* <DropdownMenuItem>Settings</DropdownMenuItem> */}
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="cursor-pointer" onClick={logout}>
-            Log out
+            {locale.account_menu.logout}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      <DrawerDialogProfile open={open} setOpen={setOpen} />
     </>
   );
 }

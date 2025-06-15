@@ -1,8 +1,29 @@
 {
   "theme_dark": "Dark",
   "theme_light": "Light",
-  "btn_login": "Login",
-  "btn_cancel": "Cancel",
+
+  "buttons": {
+    "login": "Login",
+    "cancel": "Cancel",
+    "save": "Save changes"
+  },
+
   "login_heading": "Login",
-  "login_sub": "Enjoy free services, Just log in easily."
+  "login_sub": "Enjoy free services, Just log in easily.",
+
+  "account_menu": {
+    "heading": "My Account",
+    "profile": "Profile",
+    "logout": "Log out"
+  },
+
+  "profile_heading": "Profile",
+  "profile_sub": "Manage your account details",
+
+  "profile_form": {
+    "email": "Email",
+    "mobile": "Mobile",
+    "firstname": "First Name",
+    "lastname": "Last Name"
+  }
 }

@@ -32,7 +32,7 @@ export function DrawerDialogLogin() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button>{locale.btn_login}</Button>
+          <Button>{locale.buttons.login}</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -49,7 +49,7 @@ export function DrawerDialogLogin() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button>{locale.btn_login}</Button>
+        <Button>{locale.buttons.login}</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
@@ -60,7 +60,7 @@ export function DrawerDialogLogin() {
         {/* <LoginForm className="px-4" /> */}
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">{locale.btn_cancel}</Button>
+            <Button variant="outline">{locale.buttons.cancel}</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
