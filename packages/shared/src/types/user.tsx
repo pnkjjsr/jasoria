@@ -16,3 +16,13 @@ export interface extendedUserType extends userType {
   createdat: FieldValue;
   updatedat: FieldValue;
 }
+
+export function mapProfile(user: userType) {
+  return {
+    id: user.id,
+    email: user.email || "",
+    mobile: user.mobile || "",
+    firstname: user.firstname || "",
+    lastname: user.lastname || "",
+  };
+}

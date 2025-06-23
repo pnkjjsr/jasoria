@@ -9,6 +9,8 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import type { AppStore } from "./store";
 import { makeStore } from "./store";
 
+import { Toaster } from "@/components/ui/sonner";
+
 interface Props {
   readonly children: ReactNode;
 }
@@ -30,5 +32,10 @@ export const StoreProvider = ({ children }: Props) => {
     }
   }, []);
 
-  return <Provider store={storeRef.current}>{children}</Provider>;
+  return (
+    <Provider store={storeRef.current}>
+      {children}
+      <Toaster richColors position="top-center" expand={false} />
+    </Provider>
+  );
 };

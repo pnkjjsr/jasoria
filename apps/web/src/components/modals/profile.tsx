@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import React, { useEffect, useCallback } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -32,6 +32,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 import { common as locale } from "@repo/shared/locale/index";
 import { useAppSelector, useAppDispatch } from "@repo/shared/redux/hooks";
@@ -39,8 +40,9 @@ import {
   selectUser,
   selectProfile,
   addProfile,
+  updateProfile,
 } from "@repo/shared/redux/slices/user/userSlice";
-import { UIdType } from "@repo/shared/types/user";
+import { userType, UIdType } from "@repo/shared/types/user";
 
 interface DrawerDialogProfileProps {
   open: boolean;
@@ -74,7 +76,7 @@ export function DrawerDialogProfile({
           <DialogTitle>{locale.profile_heading}</DialogTitle>
           <DialogDescription>{locale.profile_sub}</DialogDescription>
         </DrawerHeader>
-        <ProfileForm className="px-4" />
+        <ProfileForm />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline">{locale.buttons.cancel}</Button>
@@ -108,10 +110,9 @@ const FormSchema = z.object({
   }),
 });
 
-function ProfileForm({ className }: React.ComponentProps<"form">) {
+function ProfileForm() {
   const user = useAppSelector(selectUser);
-  const profile = useAppSelector(selectProfile);
-  
+  const profile = useAppSelector(selectProfile) as userType | null;
   const dispatch = useAppDispatch();
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -125,21 +126,32 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  const onSubmit = useCallback(async (data: z.infer<typeof FormSchema>) => {
     const payload = {
       id: (user as UIdType).uid,
       ...data,
     };
-    dispatch(addProfile(payload));
-  }
+    await dispatch(addProfile(payload));
+    toast.success("Profile updated successfully");
+  }, []);
+
+  useEffect(() => {
+    const uid = (user as UIdType).uid;
+    if (profile === null) dispatch(updateProfile({ uid }));
+
+    form.setValue("email", profile?.email ?? "");
+    form.setValue("mobile", profile?.mobile ?? "");
+    form.setValue("firstname", profile?.firstname ?? "");
+    form.setValue("lastname", profile?.lastname ?? "");
+  }, [profile]);
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={cn("grid items-start gap-6", className)}
+        className={cn("grid items-start gap-6")}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[310px] overflow-y-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[310px] px-4 sm:px-1 pb-1  overflow-y-auto">
           <FormField
             control={form.control}
             name="email"
@@ -209,7 +221,9 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
           />
         </div>
 
+        <div className="grid w-full px-4 sm:px-0">
         <Button type="submit">{locale.buttons.save}</Button>
+        </div>
       </form>
     </Form>
   );
