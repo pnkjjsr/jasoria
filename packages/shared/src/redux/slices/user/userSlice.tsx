@@ -3,16 +3,17 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAppSlice } from "../../createAppSlice";
 import type { AppThunk } from "../../store";
 
-import { fetchUser } from "./userAPI";
-
-import { types } from "util";
+import { addProfileInDb, fetchUser } from "./userAPI";
+import { userType } from "@repo/shared/types/user";
 
 export interface UserSliceState {
   user: object | null;
+  profile: object | null;
 }
 
 const initialState: UserSliceState = {
   user: null,
+  profile: null,
 };
 
 export const userSlice = createAppSlice({
@@ -39,12 +40,30 @@ export const userSlice = createAppSlice({
         },
       }
     ),
+    addProfile: create.asyncThunk(
+      async (data: userType) => {
+        const response = await addProfileInDb(data);
+        return response;
+      },
+      {
+        pending: (state) => {
+          // state.status = "loading";
+        },
+        fulfilled: (state, action) => {
+          state.profile = action.payload as object;
+        },
+        rejected: (state) => {
+          // state.status = "failed";
+        },
+      }
+    ),
   }),
 
   selectors: {
-    selectUser: (user) => user,
+    selectUser: (user) => user.user,
+    selectProfile: (user) => user.profile,
   },
 });
 
-export const { updateUser, loggedInUsers } = userSlice.actions;
-export const { selectUser } = userSlice.selectors;
+export const { updateUser, loggedInUsers, addProfile } = userSlice.actions;
+export const { selectUser, selectProfile } = userSlice.selectors;

@@ -5,7 +5,7 @@ import { CircleUserRound } from "lucide-react";
 import { useAppDispatch } from "@repo/shared/redux/hooks";
 import { updateUser } from "@repo/shared/redux/slices/user/userSlice";
 
-import { auth } from "@repo/shared/lib/firebase/firebaseConfig";
+import { auth } from "@repo/shared/lib/firebase/firebaseClient";
 import { mapUser } from "@repo/shared/types/auth";
 
 import { Button } from "@/components/ui/button";

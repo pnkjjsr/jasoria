@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { auth } from "@repo/shared/lib/firebase/firebaseConfig";
+import { auth } from "@repo/shared/lib/firebase/firebaseClient";
 
 import { useAppDispatch } from "@repo/shared/redux/hooks";
 import { updateUser } from "@repo/shared/redux/slices/user/userSlice";

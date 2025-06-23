@@ -1,6 +1,10 @@
 import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 
-import { auth } from "@repo/shared/lib/firebase/firebaseConfig";
+import { auth } from "@repo/shared/lib/firebase/firebaseClient";
+import { db } from "@repo/shared/lib/firebase/firebaseClient";
+
+import { userType, extendedUserType } from "@repo/shared/types/user";
 
 export const fetchUser = onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -22,3 +26,24 @@ export const fetchUser = onAuthStateChanged(auth, (user) => {
     return result;
   }
 });
+
+export const addProfileInDb = async (data: userType) => {
+  const userRef = doc(db, "users", data.id);
+  const docSnap = await getDoc(userRef);
+
+  let payload = {
+    ...data,
+    updatedat: serverTimestamp(),
+  };
+
+  if (!docSnap.exists()) {
+    (payload as extendedUserType)["createdat"] = serverTimestamp();
+  }
+
+  try {
+    await setDoc(userRef, payload, { merge: true });
+    return data;
+  } catch (error) {
+    return error;
+  }
+};

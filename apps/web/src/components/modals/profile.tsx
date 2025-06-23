@@ -32,7 +32,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
 import { common as locale } from "@repo/shared/locale/index";
+import { useAppSelector, useAppDispatch } from "@repo/shared/redux/hooks";
+import {
+  selectUser,
+  selectProfile,
+  addProfile,
+} from "@repo/shared/redux/slices/user/userSlice";
+import { UIdType } from "@repo/shared/types/user";
 
 interface DrawerDialogProfileProps {
   open: boolean;
@@ -101,6 +109,11 @@ const FormSchema = z.object({
 });
 
 function ProfileForm({ className }: React.ComponentProps<"form">) {
+  const user = useAppSelector(selectUser);
+  const profile = useAppSelector(selectProfile);
+  
+  const dispatch = useAppDispatch();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema as any),
     mode: "onChange",
@@ -113,7 +126,11 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
+    const payload = {
+      id: (user as UIdType).uid,
+      ...data,
+    };
+    dispatch(addProfile(payload));
   }
 
   return (
@@ -122,7 +139,7 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn("grid items-start gap-6", className)}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[310px] overflow-y-auto">
           <FormField
             control={form.control}
             name="email"
