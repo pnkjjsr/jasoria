@@ -13,6 +13,7 @@ npx create-turbo@latest
 ## What's inside?
 
 This Turborepo includes the following packages/apps:
+lucide-react: Use as the icon library for all icons used throughout the project.
 
 ### Apps and Packages
 

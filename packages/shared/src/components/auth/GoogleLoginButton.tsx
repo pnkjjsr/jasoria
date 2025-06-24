@@ -30,8 +30,11 @@ export default function GoogleLoginButton() {
   };
 
   return (
-    <Button type="button" onClick={handleGoogle}>
-      <CircleUserRound /> Google Login
-    </Button>
+    <div className="grid w-full px-4 sm:px-0">
+      <Button type="button" onClick={handleGoogle}>
+        {/* <CircleUserRound /> */}
+        Google Login
+      </Button>
+    </div>
   );
 }

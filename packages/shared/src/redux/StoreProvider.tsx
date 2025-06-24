@@ -12,7 +12,7 @@ import { makeStore } from "./store";
 import { Toaster } from "@/components/ui/sonner";
 
 interface Props {
-  readonly children: ReactNode;
+  readonly children: React.ReactPortal | React.ReactElement | React.ReactNode[];
 }
 
 export const StoreProvider = ({ children }: Props) => {
@@ -31,7 +31,7 @@ export const StoreProvider = ({ children }: Props) => {
       return unsubscribe;
     }
   }, []);
-
+  
   return (
     <Provider store={storeRef.current}>
       {children}

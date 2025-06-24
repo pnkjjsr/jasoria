@@ -8,12 +8,23 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@/layout/*": ["src/layout/*"],
-      "@/lib/*": ["./src/lib/*"],
-      "@/redux/*": ["./src/redux/*"],
-      "@/styles/*": ["./src/styles/*"]
-    }
+      "@/*": [
+        "./src/*"
+      ],
+      "@/layout/*": [
+        "src/layout/*"
+      ],
+      "@/lib/*": [
+        "./src/lib/*"
+      ],
+      "@/redux/*": [
+        "./src/redux/*"
+      ],
+      "@/styles/*": [
+        "./src/styles/*"
+      ]
+    },
+    "jsx": "preserve"
   },
   "include": [
     "**/*.ts",
@@ -22,5 +33,7 @@
     "next.config.js",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
