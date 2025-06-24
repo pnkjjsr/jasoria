@@ -32,7 +32,7 @@ export default function GoogleLoginButton() {
   return (
     <div className="grid w-full px-4 sm:px-0">
       <Button type="button" onClick={handleGoogle}>
-        {/* <CircleUserRound /> */}
+        <CircleUserRound />
         Google Login
       </Button>
     </div>

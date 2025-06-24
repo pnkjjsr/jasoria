@@ -1,14 +1,9 @@
 import React from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
-interface LogoProps {
-  path: string;
-  width: number;
-  height: number;
-  alt: string;
-}
+import { ImageProps } from "@repo/shared/types/common";
 
-export default function logo(props: LogoProps) {
+export default function logo(props: ImageProps) {
   const { path, width, height, alt } = props;
   return <Image priority src={path} width={width} height={height} alt={alt} />;
 }

@@ -13,7 +13,9 @@ npx create-turbo@latest
 ## What's inside?
 
 This Turborepo includes the following packages/apps:
-lucide-react: Use as the icon library for all icons used throughout the project.
+Tailwind CSS, is a utility-first CSS framework that simplifies and speeds up UI development.
+lucide-react, Use as the icon library for all icons used throughout the project.
+motion.dev, Use as animation and add motion in section.
 
 ### Apps and Packages
 

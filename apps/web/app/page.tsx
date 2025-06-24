@@ -5,6 +5,8 @@ import { home as locale } from "@repo/shared/locale/index";
 import Header from "@/layout/headers/basic";
 import Nav from "@/layout/nav/basic";
 
+import Feature from "@/components/cards/Feature";
+
 export default function Home() {
   return (
     <>
@@ -22,7 +24,7 @@ export default function Home() {
             scale: { type: "spring", visualDuration: 0.8, bounce: 0.5 },
           }}
         >
-          <div className="flex flex-col items-center justify-center mt-10 lg:mt-20">
+          <div className="flex flex-col items-center justify-center my-10 lg:my-20">
             <h1 className="xl:w-7xl text-2xl md:text-5xl/15 lg:text-6xl/20 block text-center font-semibold">
               {locale.h1.first}
               <br />
@@ -30,6 +32,8 @@ export default function Home() {
             </h1>
           </div>
         </motion.div>
+
+        <Feature />
       </main>
     </>
   );
