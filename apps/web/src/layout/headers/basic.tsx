@@ -46,7 +46,7 @@ export default function Header() {
       </div>
       <div className="float-right flex justify-center space-x-2 items-start ">
         <div className="flex items-center space-x-2 pt-2">
-          <Switch id="airplane-mode" onClick={toggleDarkMode} />
+          <Switch id="airplane-mode" checked={isDarkMode} onClick={toggleDarkMode} />
           <Label
             className="w-[34] transition delay-100 duration-200 ease-in-out"
             htmlFor="airplane-mode"
