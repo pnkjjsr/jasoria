@@ -1,6 +1,9 @@
 import React from "react";
+import { Wrench } from "lucide-react";
 
 import PageHeader from "@/layout/headers/page";
+import FeatureForm from "@/components/cards/FeatureForm";
+
 import { en as locale } from "@repo/shared/locale/index";
 
 export default function HHB() {
@@ -11,7 +14,12 @@ export default function HHB() {
         sub={locale.feature_hhb.sub}
       />
 
-      <div className=""></div>
+      <FeatureForm
+        icon={<Wrench size={80} strokeWidth={0.5} />}
+        heading={locale.form_hhb.heading}
+        sub={locale.form_hhb.sub}
+        cta={locale.form_hhb.cta}
+      />
     </div>
   );
 }

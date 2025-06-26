@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 import * as motion from "motion/react-client";
 
+import { FeatureInfoType } from "@repo/shared/types/common";
+
 import {
   Card,
   CardContent,
@@ -13,16 +15,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-interface featureProps {
-  icon: React.ReactNode;
-  title: string;
-  heading: string;
-  sub: string;
-  cta: string;
-  href: string;
-}
-
-export default function FeatureInfo(props: featureProps) {
+export default function FeatureInfo(props: FeatureInfoType) {
   const { icon, title, heading, sub, cta, href } = props;
   return (
     <motion.div
