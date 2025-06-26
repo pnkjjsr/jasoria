@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DrawerDialogProfile } from "@/components/modals/profile";
 
-import { common as locale } from "@repo/shared/locale/index";
+import { en as locale } from "@repo/shared/locale/index";
 import { userType } from "@repo/shared/types/auth";
 
 interface propsData {

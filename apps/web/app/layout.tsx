@@ -3,6 +3,9 @@ import localFont from "next/font/local";
 
 import { StoreProvider } from "@repo/shared/redux/StoreProvider";
 
+import Header from "@/layout/headers/basic";
+import Nav from "@/layout/nav/basic";
+
 import "./globals.css";
 
 const geistSans = localFont({
@@ -30,7 +33,12 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground`}
         >
-          {children}
+          <div className="sticky top-0 z-50">
+            <Header />
+            <Nav />
+          </div>
+
+          <main>{children}</main>
         </body>
       </html>
     </StoreProvider>

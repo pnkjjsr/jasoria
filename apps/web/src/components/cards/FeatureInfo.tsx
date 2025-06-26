@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import * as motion from "motion/react-client";
-import { NotebookPen } from "lucide-react";
 
 import {
   Card,
@@ -11,38 +11,47 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
-export default function Feature() {
+interface featureProps {
+  icon: React.ReactNode;
+  title: string;
+  heading: string;
+  sub: string;
+  cta: string;
+  href: string;
+}
+
+export default function FeatureInfo(props: featureProps) {
+  const { icon, title, heading, sub, cta, href } = props;
   return (
     <motion.div
       initial={{ y: 20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      // whileHover={{ scale: 1.03 }}
       exit={{ y: -10, opacity: 0 }}
       transition={{ duration: 0.4 }}
     >
       <Card className="max-w-lg mx-2 sm:mx-auto text-center gap-0 shadow-2xl opacity-90">
         <CardHeader>
-          <CardTitle className="text-xl sm:text-2xl">Home Help Book</CardTitle>
+          <CardTitle className="text-xl sm:text-2xl">{title}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col items-center justify-center my-4">
-          <NotebookPen size={80} strokeWidth={0.5} />
+          {icon}
         </CardContent>
         <CardFooter>
           <p className="">
             <span className="text-base sm:text-xl font-semibold">
-              Keep Your Support Contact Just a Tap Away
+              {heading}
             </span>
             <br />
-            <span className="text-sm sm:text-base">
-              Store and share essential support contacts when it matters most.
-            </span>
+            <span className="text-sm sm:text-base">{sub}</span>
           </p>
         </CardFooter>
-        {/* <div className="mt-2">
-          <Button className="hover:cursor-pointer ">Lets Start</Button>
-        </div> */}
+        <div className="mt-2">
+          <Link href={href} passHref>
+            <Button className="hover:cursor-pointer">{cta}</Button>
+          </Link>
+        </div>
       </Card>
     </motion.div>
   );

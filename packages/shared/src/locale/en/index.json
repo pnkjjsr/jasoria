@@ -1,0 +1,45 @@
+{
+  "theme_dark": "Dark",
+  "theme_light": "Light",
+
+  "home": {
+    "title": "Home",
+    "description": "Welcome to the home page of our application. Here you can find various features and functionalities that we offer.",
+    "h1": {
+      "first": "Transforming Small Businesses",
+      "second": "With A Single Smart Platform"
+    }
+  },
+
+  "buttons": {
+    "login": "Login",
+    "cancel": "Cancel",
+    "save": "Save changes",
+    "lets_start": "Lets Start"
+  },
+
+  "login_heading": "Login",
+  "login_sub": "Enjoy free services, Just log in easily.",
+
+  "account_menu": {
+    "heading": "My Account",
+    "profile": "Profile",
+    "logout": "Log out"
+  },
+
+  "profile_heading": "Profile",
+  "profile_sub": "Manage your account details",
+
+  "profile_form": {
+    "email": "Email",
+    "mobile": "Mobile",
+    "firstname": "First Name",
+    "lastname": "Last Name"
+  },
+
+  "feature_hhb": {
+    "title": "House Help Book",
+    "heading": "Keep Your Support Contact Just a Tap Away",
+    "sub": "Store and share essential support contacts when it matters most."
+  }
+}

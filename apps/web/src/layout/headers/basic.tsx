@@ -7,7 +7,7 @@ import getTheme, { setTheme } from "@repo/shared/utils/theme";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
-import { common as locale } from "@repo/shared/locale/index";
+import { en as locale } from "@repo/shared/locale/index";
 import UserLoginButton from "@repo/shared/components/auth/UserLoginButton";
 
 export default function Header() {
@@ -46,7 +46,11 @@ export default function Header() {
       </div>
       <div className="float-right flex justify-center space-x-2 items-start ">
         <div className="flex items-center space-x-2 pt-2">
-          <Switch id="airplane-mode" checked={isDarkMode} onClick={toggleDarkMode} />
+          <Switch
+            id="airplane-mode"
+            checked={isDarkMode}
+            onClick={toggleDarkMode}
+          />
           <Label
             className="w-[34] transition delay-100 duration-200 ease-in-out"
             htmlFor="airplane-mode"

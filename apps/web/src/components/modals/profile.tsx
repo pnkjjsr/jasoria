@@ -34,7 +34,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
-import { common as locale } from "@repo/shared/locale/index";
+import { en as locale } from "@repo/shared/locale/index";
 import { useAppSelector, useAppDispatch } from "@repo/shared/redux/hooks";
 import {
   selectUser,

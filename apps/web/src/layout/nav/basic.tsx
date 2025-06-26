@@ -53,6 +53,28 @@ export default function NavigationMenuDemo() {
       <NavigationMenu className="w-auto mx-auto">
         <NavigationMenuList>
           <NavigationMenuItem>
+            <NavigationMenuLink
+              className={navigationMenuTriggerStyle()}
+              asChild
+            >
+              <Link href="/" passHref>
+                Home
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              className={navigationMenuTriggerStyle()}
+              asChild
+            >
+              <Link href="/hhb" passHref>
+                House Help Book
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+
+          {/* <NavigationMenuItem>
             <NavigationMenuTrigger>Jobs</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -113,7 +135,7 @@ export default function NavigationMenuDemo() {
                 Food Delivery
               </Link>
             </NavigationMenuLink>
-          </NavigationMenuItem>
+          </NavigationMenuItem> */}
         </NavigationMenuList>
       </NavigationMenu>
     </nav>

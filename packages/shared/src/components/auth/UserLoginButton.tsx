@@ -10,7 +10,7 @@ import { userType, mapUser } from "@repo/shared/types/auth";
 
 import { DrawerDialogLogin } from "@/components/modals/login";
 import { Skeleton } from "@/components/ui/skeleton";
-import UserMenu from "@/components/dropdown/UserMenu";
+import UserMenu from "@/components/dropdowns/UserMenu";
 
 export default function UserLoginButton() {
   const dispatch = useAppDispatch();

@@ -1,4 +1,3 @@
-import common from "./en/common.json";
-import home from "./en/home.json";
+import en from "./en/index.json";
 
-export { common, home };
+export { en };

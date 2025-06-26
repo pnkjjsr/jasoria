@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 
-import { common as locale } from "@repo/shared/locale/index";
+import { en as locale } from "@repo/shared/locale/index";
 import GoogleLoginButton from "@repo/shared/components/auth/GoogleLoginButton";
 
 export function DrawerDialogLogin() {
