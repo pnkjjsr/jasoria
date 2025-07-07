@@ -1,12 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-
-import { auth } from "@repo/shared/lib/firebase/firebaseClient";
+import { supabase } from "@repo/shared/lib/superbase/supabaseClient";
 
 import { useAppDispatch } from "@repo/shared/redux/hooks";
 import { updateUser } from "@repo/shared/redux/slices/user/userSlice";
-import { userType, mapUser } from "@repo/shared/types/auth";
+import {
+  mapSupabaseUser,
+  userSupaType,
+} from "@repo/shared/types/auth";
 
 import { DrawerDialogLogin } from "@/components/modals/login";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -16,33 +17,35 @@ export default function UserLoginButton() {
   const dispatch = useAppDispatch();
 
   const [isLoggedIn, setIsloggedIn] = useState<boolean | undefined>();
-  const [user, setUser] = useState({} as userType);
+  const [user, setUser] = useState({} as userSupaType);
 
   const handleLogout = async () => {
     try {
-      await auth.signOut();
+      await supabase.auth.signOut();
       setIsloggedIn(false);
-      setUser({} as userType);
+      setUser({} as userSupaType);
     } catch (error) {
       console.error("Error signing out:", error);
     }
   };
 
+  const getSupabaseUser = async () => {
+    const { data: user, error: userError } = await supabase.auth.getUser();
+
+    if (user?.user) {
+      const userData = mapSupabaseUser(user?.user);
+
+      setIsloggedIn(true);
+      setUser(userData);
+
+      dispatch(updateUser(userData));
+    } else {
+      setIsloggedIn(false);
+    }
+  };
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const userData = mapUser(user);
-
-        setIsloggedIn(true);
-        setUser(userData);
-
-        dispatch(updateUser(userData));
-      } else {
-        setIsloggedIn(false);
-      }
-    });
-
-    return () => unsubscribe();
+    getSupabaseUser();
   }, []);
 
   if (isLoggedIn === undefined) {
@@ -51,7 +54,7 @@ export default function UserLoginButton() {
 
   return (
     <>
-      {user?.photoURL ? (
+      {user?.id ? (
         <UserMenu user={user} logout={handleLogout} />
       ) : (
         <DrawerDialogLogin />

@@ -13,10 +13,10 @@ import {
 import { DrawerDialogProfile } from "@/components/modals/profile";
 
 import { en as locale } from "@repo/shared/locale/index";
-import { userType } from "@repo/shared/types/auth";
+import { userSupaType } from "@repo/shared/types/auth";
 
 interface propsData {
-  user: userType;
+  user: userSupaType;
   logout: VoidFunction;
 }
 
@@ -31,11 +31,11 @@ export default function UserMenu(props: propsData) {
           <Avatar>
             <AvatarImage
               className="cursor-pointer"
-              src={user.photoURL}
-              alt={user.displayName}
+              src={user.picture}
+              alt={user.name}
             />
             <AvatarFallback className="cursor-pointer">
-              {user.displayName}
+              {user.name}
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>

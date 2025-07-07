@@ -31,3 +31,19 @@ export function mapUser(user: User): userType {
     })),
   };
 }
+
+export interface userSupaType {
+  id: string;
+  email: string;
+  name: string;
+  picture: string;
+}
+
+export function mapSupabaseUser(user: any): userSupaType {
+  return {
+    id: user.id,
+    email: user.email || "",
+    name: user.user_metadata.name || "",
+    picture: user.user_metadata.picture || "",
+  };
+}
