@@ -42,6 +42,7 @@ export default function FeatureForm(props: FeatureFormType) {
   };
 
   useEffect(() => {
+    if (user === null) return setIsLoading(true);
     getService();
   }, [user]);
 

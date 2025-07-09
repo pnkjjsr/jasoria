@@ -55,6 +55,8 @@ export default function HHBCard(props: {
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
+    if (user === null) return toast.error(`Please login to save your ${type}.`);
+
     const { id } = user as userSupaType;
 
     const payload = {
