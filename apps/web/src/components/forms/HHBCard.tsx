@@ -5,14 +5,17 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import { supabase } from "@repo/shared/lib/superbase/supabaseClient";
+import { useAppSelector } from "@repo/shared/redux/hooks";
+import { selectUser } from "@repo/shared/redux/slices/user/userSlice";
+import { userSupaType } from "@repo/shared/types/auth";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -34,23 +37,46 @@ const FormSchema = z.object({
   }),
 });
 
-export default function FeatureCard(props: { cta: string }) {
-  const { cta } = props;
+export default function HHBCard(props: {
+  cta: string;
+  type: string;
+  setHelpData: any;
+}) {
+  const { cta, type, setHelpData } = props;
+  const user = useAppSelector(selectUser);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       phonenumber: "",
+      firstname: "",
+      lastname: "",
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast("You submitted the following values", {
-      description: (
-        <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    const { id } = user as userSupaType;
+
+    const payload = {
+      type: type,
+      user_id: id,
+      phonenumber: data.phonenumber,
+      firstname: data.firstname,
+      lastname: data.lastname,
+    };
+
+    const { error } = await supabase
+      .from("home_helps")
+      .upsert(payload)
+      .select();
+
+    if (error) {
+      toast.error("Failed to submit: " + error.message);
+    } else {
+      setHelpData(payload);
+      toast.success("Form submitted and saved to Supabase!");
+      form.reset();
+    }
   }
 
   return (

@@ -42,9 +42,19 @@
     "heading": "Keep Your Support Contact Just a Tap Away",
     "sub": "Store and share essential support contacts when it matters most."
   },
-  "form_hhb": {
+  "hhb_plumber": {
     "heading": "Plumber",
     "sub": "My Water Saviour!",
     "cta": "Save Plumber"
+  },
+  "hhb_electrician": {
+    "heading": "Electrician",
+    "sub": "My Electric Hero!",
+    "cta": "Save Electrician"
+  },
+  "hhb_acservice": {
+    "heading": "AC Repair/Service",
+    "sub": "My AC Saviour!",
+    "cta": "Save AC Service"
   }
 }

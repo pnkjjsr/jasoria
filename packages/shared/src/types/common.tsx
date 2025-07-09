@@ -20,4 +20,5 @@ export interface FeatureFormType {
   heading: string;
   sub: string;
   cta: string;
+  type: string;
 }

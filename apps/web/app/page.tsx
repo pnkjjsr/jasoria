@@ -3,7 +3,7 @@ import { NotebookPen } from "lucide-react";
 
 import { en as locale } from "@repo/shared/locale/index";
 
-import FeatureInfo from "@/components/cards/FeatureInfo";
+import FeatureInfo from "@/components/cards/HHB_Feature/FeatureInfo";
 
 export default function Home() {
   return (
