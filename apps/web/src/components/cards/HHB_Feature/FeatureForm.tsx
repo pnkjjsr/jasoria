@@ -25,7 +25,7 @@ export default function FeatureForm(props: FeatureFormType) {
     if (user !== null) {
       const { id } = user as userSupaType;
 
-      let { data: help_data } = await supabase
+      const { data: help_data } = await supabase
         .from("home_helps")
         .select("*")
         .eq("user_id", id)

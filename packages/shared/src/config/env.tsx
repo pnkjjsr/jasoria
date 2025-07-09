@@ -15,4 +15,10 @@ export const ENV = {
   NEXT_PUBLIC_FIREBASE_APP_ID:
     process.env.NEXT_PUBLIC_FIREBASE_APP_ID ??
     "1:925771586592:web:ed186ffbc85e2ca8f8f045",
+  NEXT_PUBLIC_SUPABASE_URL:
+    process.env.NEXT_PUBLIC_SUPABASE_URL ??
+    "https://yjwbqwkaepobgsviuyvf.supabase.co",
+  NEXT_PUBLIC_SUPABASE_ANON_KEY:
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlqd2Jxd2thZXBvYmdzdml1eXZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEwMDQxMjAsImV4cCI6MjA2NjU4MDEyMH0.M58R5ThQWo0RqvtiZlCCWJiCGKFrYiuP373IOmbu7Mk",
 };
