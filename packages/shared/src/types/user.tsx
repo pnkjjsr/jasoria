@@ -5,7 +5,7 @@ export interface UIdType {
 }
 
 export interface userType {
-  id: string;
+  user_id: string;
   email: string;
   firstname: string;
   lastname: string;
@@ -19,7 +19,7 @@ export interface extendedUserType extends userType {
 
 export function mapProfile(user: userType) {
   return {
-    id: user.id,
+    user_id: user.user_id,
     email: user.email || "",
     mobile: user.mobile || "",
     firstname: user.firstname || "",

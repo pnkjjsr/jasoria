@@ -43,6 +43,7 @@ import {
   updateProfile,
 } from "@repo/shared/redux/slices/user/userSlice";
 import { userType, UIdType } from "@repo/shared/types/user";
+import { userSupaType } from "@repo/shared/types/auth";
 
 interface DrawerDialogProfileProps {
   open: boolean;
@@ -127,10 +128,12 @@ function ProfileForm() {
   });
 
   const onSubmit = useCallback(async (data: z.infer<typeof FormSchema>) => {
+    const { id } = user as userSupaType;
     const payload = {
-      id: (user as UIdType).uid,
+      user_id: id,
       ...data,
     };
+
     await dispatch(addProfile(payload));
     toast.success("Profile updated successfully");
   }, []);
@@ -222,7 +225,7 @@ function ProfileForm() {
         </div>
 
         <div className="grid w-full px-4 sm:px-0">
-        <Button type="submit">{locale.buttons.save}</Button>
+          <Button type="submit">{locale.buttons.save}</Button>
         </div>
       </form>
     </Form>

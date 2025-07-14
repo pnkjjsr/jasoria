@@ -1,14 +1,9 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 
 import { auth } from "@repo/shared/lib/firebase/firebaseClient";
-import { db } from "@repo/shared/lib/firebase/firebaseClient";
+import { supabase } from "@repo/shared/lib/superbase/supabaseClient";
 
-import {
-  mapProfile,
-  userType,
-  extendedUserType,
-} from "@repo/shared/types/user";
+import { mapProfile, userType } from "@repo/shared/types/user";
 
 export const fetchUser = onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -32,34 +27,44 @@ export const fetchUser = onAuthStateChanged(auth, (user) => {
 });
 
 export const postProfile = async (data: userType) => {
-  const userRef = doc(db, "users", data.id);
-  const docSnap = await getDoc(userRef);
+  let response;
 
-  let payload = {
-    ...data,
-    updatedat: serverTimestamp(),
-  };
+  const { data: profile_exists, error } = await supabase
+    .from("user_profiles")
+    .select("*")
+    .eq("user_id", data.user_id);
 
-  if (!docSnap.exists()) {
-    (payload as extendedUserType)["createdat"] = serverTimestamp();
+  if (profile_exists && profile_exists?.length <= 0) {
+    const { data: profile_add, error } = await supabase
+      .from("user_profiles")
+      .insert(data)
+      .select();
+
+    response = profile_add;
+  } else {
+    const { data: profile_update, error } = await supabase
+      .from("user_profiles")
+      .upsert(data, { onConflict: "user_id" })
+      .select();
+
+    response = profile_update;
   }
 
   try {
-    await setDoc(userRef, payload, { merge: true });
-    return data;
+    return response;
   } catch (error) {
     return error;
   }
 };
 
 export const getProfile = async (uid: string) => {
-  const userRef = doc(db, "users", uid);
-  const docSnap = await getDoc(userRef);
+  let { data: profile_data, error } = await supabase
+    .from("user_profiles")
+    .select("*");
 
-  if (!docSnap.exists()) return null;
-
-  const profile = docSnap.data() as userType;
-  const mappedProfile = mapProfile(profile);
-
-  return mappedProfile;
+  if (profile_data && profile_data.length >= 0) {
+    const profile = profile_data[0] as userType;
+    const mappedProfile = mapProfile(profile);
+    return mappedProfile;
+  } else return null;
 };
