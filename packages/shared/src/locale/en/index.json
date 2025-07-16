@@ -15,7 +15,14 @@
     "login": "Login",
     "cancel": "Cancel",
     "save": "Save changes",
-    "lets_start": "Lets Start"
+    "lets_start": "Lets Start",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+
+  "toost": {
+    "success": "Success",
+    "error": "Error"
   },
 
   "login_heading": "Login",

@@ -2,15 +2,19 @@
 
 import React, { useState, useEffect } from "react";
 import * as motion from "motion/react-client";
+import { Pencil } from "lucide-react";
+import { Trash } from "lucide-react";
 
 import { supabase } from "@repo/shared/lib/superbase/supabaseClient";
 import { useAppSelector } from "@repo/shared/redux/hooks";
 import { selectUser } from "@repo/shared/redux/slices/user/userSlice";
 import { FeatureFormType } from "@repo/shared/types/common";
 import { userSupaType } from "@repo/shared/types/auth";
+import { en as locale } from "@repo/shared/locale/index";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
 
 import HHBCard from "@/components/forms/HHBCard";
 
@@ -20,6 +24,9 @@ export default function FeatureForm(props: FeatureFormType) {
   const { icon, heading, sub, cta, type } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [helpData, setHelpData] = useState(null);
+  const [edit, setEdit] = useState(false);
+
+  const handleEdit = () => setEdit((prev) => !prev);
 
   const getService = async () => {
     if (user !== null) {
@@ -66,10 +73,17 @@ export default function FeatureForm(props: FeatureFormType) {
         <CardContent className="flex flex-col items-center justify-center mt-2">
           {!isLoading ? (
             <Skelton />
-          ) : helpData ? (
-            <Preview data={helpData} />
+          ) : helpData && !edit ? (
+            <Preview data={helpData} editToggle={handleEdit} />
           ) : (
-            <HHBCard cta={cta} type={type} setHelpData={setHelpData} />
+            <HHBCard
+              cta={cta}
+              type={type}
+              helpData={helpData}
+              setHelpData={setHelpData}
+              editStatus={edit}
+              editToggle={handleEdit}
+            />
           )}
         </CardContent>
       </Card>
@@ -95,7 +109,23 @@ function Skelton() {
 }
 
 function Preview(props: any) {
-  const { firstname, lastname, phonenumber } = props.data;
+  const { editToggle } = props;
+  const { user_id, type, firstname, lastname, phonenumber } = props.data;
+  console.log(props.data);
+
+  const handleEdit = () => {
+    editToggle();
+  };
+
+  const handleDelete = async () => {
+    await supabase
+      .from("home_helps")
+      .delete()
+      .eq("user_id", user_id)
+      .eq("type", type);
+
+    editToggle();
+  };
 
   return (
     <div className="w-full text-left">
@@ -103,6 +133,24 @@ function Preview(props: any) {
         {firstname} {lastname}
       </h2>
       <p className="text-3xl">{phonenumber}</p>
+
+      <div className="flex mt-8 gap-3">
+        <Button
+          className="cursor-pointer"
+          variant="secondary"
+          onClick={handleDelete}
+        >
+          <Trash /> {locale.buttons.delete}
+        </Button>
+
+        <Button
+          className="cursor-pointer"
+          variant="outline"
+          onClick={handleEdit}
+        >
+          <Pencil /> {locale.buttons.edit}
+        </Button>
+      </div>
     </div>
   );
 }

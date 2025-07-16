@@ -120,10 +120,10 @@ function ProfileForm() {
     resolver: zodResolver(FormSchema as any),
     mode: "onChange",
     defaultValues: {
-      email: "",
-      mobile: "",
-      firstname: "",
-      lastname: "",
+      email: profile?.email || "",
+      mobile: profile?.mobile || "",
+      firstname: profile?.firstname || "",
+      lastname: profile?.lastname || "",
     },
   });
 
