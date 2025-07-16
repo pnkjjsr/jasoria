@@ -26,6 +26,14 @@ export default function Header() {
     // Check if the user has a system preference for dark mode
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     setIsUserPrefersDarkMode(mediaQuery.matches);
+
+    const handleScroll = () => {
+      const wheelY = document.body.scrollTop;
+      setScrollY(wheelY);
+    };
+
+    document.body.addEventListener("scroll", handleScroll);
+    return () => document.body.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleDarkMode = () => {
@@ -43,7 +51,7 @@ export default function Header() {
 
   return (
     <header
-      className={`w-full flex py-2 px-2 ${scrollY > 0 ? "bg-white/80 dark:bg-[#1a1a1a]/80" : ""}`}
+      className={`w-full flex py-2 px-2 animate-fade-in duration-700 ${scrollY > 50 ? "bg-white/90 dark:bg-[#1a1a1a]/90" : ""}`}
     >
       <div className="w-full flex justify-center md:py-4">
         <Logo path={renderLogoPath()} width={286} height={55} alt="Jasoria" />
