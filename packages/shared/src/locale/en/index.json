@@ -49,6 +49,11 @@
     "heading": "Keep Your Support Contact Just a Tap Away",
     "sub": "Store and share essential support contacts when it matters most."
   },
+  "hhb_maid": {
+    "heading": "Maid",
+    "sub": "My Clean God!",
+    "cta": "Save Maid"
+  },
   "hhb_plumber": {
     "heading": "Plumber",
     "sub": "My Water Saviour!",
@@ -63,5 +68,25 @@
     "heading": "AC Repair/Service",
     "sub": "My AC Saviour!",
     "cta": "Save AC Service"
+  },
+  "hhb_carpenter": {
+    "heading": "Carpenter",
+    "sub": "My Furniture Saviour!",
+    "cta": "Save Carpenter"
+  },
+  "hhb_roservice": {
+    "heading": "RO Repair/Service",
+    "sub": "My Water Saviour!",
+    "cta": "Save RO Service"
+  },
+  "hhb_geyser": {
+    "heading": "Geyser Repair",
+    "sub": "My Bathroom Hero!",
+    "cta": "Save Geyser Man"
+  },
+  "hhb_gardener": {
+    "heading": "Gardener",
+    "sub": "My Garden Saviour!",
+    "cta": "Save Gardener"
   }
 }
