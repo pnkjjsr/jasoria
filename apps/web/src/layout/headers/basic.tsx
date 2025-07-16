@@ -13,6 +13,7 @@ import UserLoginButton from "@repo/shared/components/auth/UserLoginButton";
 export default function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isUserPrefersDarkMode, setIsUserPrefersDarkMode] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const getThemeFromStorage = getTheme();
@@ -25,7 +26,7 @@ export default function Header() {
     // Check if the user has a system preference for dark mode
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     setIsUserPrefersDarkMode(mediaQuery.matches);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => {
@@ -39,8 +40,11 @@ export default function Header() {
     if (isDarkMode) return "/logo-light.svg";
     return "/logo-dark.svg";
   };
+
   return (
-    <header className="w-full flex  pt-2 px-2">
+    <header
+      className={`w-full flex py-2 px-2 ${scrollY > 0 ? "bg-white/80 dark:bg-[#1a1a1a]/80" : ""}`}
+    >
       <div className="w-full flex justify-center md:py-4">
         <Logo path={renderLogoPath()} width={286} height={55} alt="Jasoria" />
       </div>

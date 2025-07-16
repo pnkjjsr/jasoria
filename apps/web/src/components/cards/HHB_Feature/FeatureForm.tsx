@@ -111,7 +111,6 @@ function Skelton() {
 function Preview(props: any) {
   const { editToggle } = props;
   const { user_id, type, firstname, lastname, phonenumber } = props.data;
-  console.log(props.data);
 
   const handleEdit = () => {
     editToggle();
