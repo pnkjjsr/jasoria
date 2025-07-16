@@ -53,8 +53,8 @@ export default function Header() {
     <header
       className={`w-full flex py-2 px-2 animate-fade-in duration-700 ${scrollY > 50 ? "bg-white/90 dark:bg-[#1a1a1a]/90" : ""}`}
     >
-      <div className="w-full flex justify-center md:py-4">
-        <Logo path={renderLogoPath()} width={286} height={55} alt="Jasoria" />
+      <div className="w-full flex align-left lg:justify-center md:py-4">
+        <Logo path={renderLogoPath()} width={164} height={55} alt="Jasoria" />
       </div>
       <div className="float-right flex justify-center space-x-2 items-start ">
         <div className="flex items-center space-x-2 pt-2">
@@ -70,6 +70,9 @@ export default function Header() {
             {isDarkMode ? locale.theme_dark : locale.theme_light}
           </Label>
         </div>
+
+        <span>EN</span>
+
         <UserLoginButton />
       </div>
     </header>
