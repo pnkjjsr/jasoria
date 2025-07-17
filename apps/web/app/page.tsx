@@ -7,7 +7,7 @@ import { locale } from "@repo/shared/locale/index";
 import FeatureInfo from "@/components/cards/HHB_Feature/FeatureInfo";
 
 export default function Home() {
-  const t = useTranslations("HomePage");
+  const t = useTranslations();
 
   return (
     <>
@@ -19,19 +19,18 @@ export default function Home() {
       >
         <div className="flex flex-col items-center justify-center my-10 lg:my-20">
           <h1 className="xl:w-7xl text-2xl md:text-5xl/15 lg:text-6xl/20 block text-center font-semibold">
-            {locale.home.h1.first}
+            {t("home.h1.first")}
             <br />
-            {locale.home.h1.second}
+            {t("home.h1.second")}
           </h1>
         </div>
       </motion.div>
-
       <FeatureInfo
         icon={<NotebookPen size={80} strokeWidth={0.5} />}
-        title={locale.feature_hhb.title}
-        heading={locale.feature_hhb.heading}
-        sub={locale.feature_hhb.sub}
-        cta={locale.buttons.lets_start}
+        title={t("feature_hhb.title")}
+        heading={t("feature_hhb.heading")}
+        sub={t("feature_hhb.sub")}
+        cta={t("feature_hhb.lets_start")}
         href="/hhb"
       />
     </>
