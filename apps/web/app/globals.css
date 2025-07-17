@@ -133,6 +133,10 @@ a {
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* html > body[data-scroll-locked] {
+  margin-right: 15px !important;
+} */
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

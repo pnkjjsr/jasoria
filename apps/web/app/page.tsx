@@ -1,11 +1,14 @@
 import * as motion from "motion/react-client";
 import { NotebookPen } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-import { en as locale } from "@repo/shared/locale/index";
+import { locale } from "@repo/shared/locale/index";
 
 import FeatureInfo from "@/components/cards/HHB_Feature/FeatureInfo";
 
 export default function Home() {
+  const t = useTranslations("HomePage");
+
   return (
     <>
       <motion.div

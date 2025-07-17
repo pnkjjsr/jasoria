@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from "next-intl/server";
 
 import { StoreProvider } from "@repo/shared/redux/StoreProvider";
 
@@ -22,23 +24,27 @@ export const metadata: Metadata = {
   description: "one platform for all your needs",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
     <StoreProvider>
-      <html lang="en">
+      <html lang={locale}>
         <body
           className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground`}
         >
-          <div className="sticky top-0 z-50">
-            <Header />
-            <Nav />
-          </div>
+          <NextIntlClientProvider>
+            <div className="sticky top-0 z-50">
+              <Header />
+              <Nav />
+            </div>
 
-          <main>{children}</main>
+            <main>{children}</main>
+          </NextIntlClientProvider>
         </body>
       </html>
     </StoreProvider>

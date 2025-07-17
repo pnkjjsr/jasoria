@@ -10,7 +10,7 @@ import { useAppSelector } from "@repo/shared/redux/hooks";
 import { selectUser } from "@repo/shared/redux/slices/user/userSlice";
 import { FeatureFormType } from "@repo/shared/types/common";
 import { userSupaType } from "@repo/shared/types/auth";
-import { en as locale } from "@repo/shared/locale/index";
+import { locale } from "@repo/shared/locale/index";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";

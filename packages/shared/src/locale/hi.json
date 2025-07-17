@@ -1,0 +1,92 @@
+{
+  "theme_dark": "Dark",
+  "theme_light": "Light",
+
+  "home": {
+    "title": "होम",
+    "description": "Welcome to the home page of our application. Here you can find various features and functionalities that we offer.",
+    "h1": {
+      "first": "एकल स्मार्ट प्लेटफ़ॉर्म के साथ",
+      "second": "छोटे व्यवसायों का रूपांतरण"
+    }
+  },
+
+  "buttons": {
+    "login": "Login",
+    "cancel": "Cancel",
+    "save": "Save changes",
+    "lets_start": "Lets Start",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+
+  "toost": {
+    "success": "Success",
+    "error": "Error"
+  },
+
+  "login_heading": "Login",
+  "login_sub": "Enjoy free services, Just log in easily.",
+
+  "account_menu": {
+    "heading": "My Account",
+    "profile": "Profile",
+    "logout": "Log out"
+  },
+
+  "profile_heading": "Profile",
+  "profile_sub": "Manage your account details",
+
+  "profile_form": {
+    "email": "Email",
+    "mobile": "Mobile",
+    "firstname": "First Name",
+    "lastname": "Last Name"
+  },
+
+  "feature_hhb": {
+    "title": "House Help Book",
+    "heading": "Keep Your Support Contact Just a Tap Away",
+    "sub": "Store and share essential support contacts when it matters most."
+  },
+  "hhb_maid": {
+    "heading": "Maid",
+    "sub": "My Clean God!",
+    "cta": "Save Maid"
+  },
+  "hhb_plumber": {
+    "heading": "Plumber",
+    "sub": "My Water Saviour!",
+    "cta": "Save Plumber"
+  },
+  "hhb_electrician": {
+    "heading": "Electrician",
+    "sub": "My Electric Hero!",
+    "cta": "Save Electrician"
+  },
+  "hhb_acservice": {
+    "heading": "AC Repair/Service",
+    "sub": "My AC Saviour!",
+    "cta": "Save AC Service"
+  },
+  "hhb_carpenter": {
+    "heading": "Carpenter",
+    "sub": "My Furniture Saviour!",
+    "cta": "Save Carpenter"
+  },
+  "hhb_roservice": {
+    "heading": "RO Repair/Service",
+    "sub": "My Water Saviour!",
+    "cta": "Save RO Service"
+  },
+  "hhb_geyser": {
+    "heading": "Geyser Repair",
+    "sub": "My Bathroom Hero!",
+    "cta": "Save Geyser Man"
+  },
+  "hhb_gardener": {
+    "heading": "Gardener",
+    "sub": "My Garden Saviour!",
+    "cta": "Save Gardener"
+  }
+}

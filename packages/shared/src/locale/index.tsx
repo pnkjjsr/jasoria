@@ -1,3 +1,6 @@
-import en from "./en/index.json";
+import { LocaleIntl } from "../const/common";
 
-export { en };
+import en from "./en.json";
+import hi from "./hi.json";
+
+export { en as locale, hi };

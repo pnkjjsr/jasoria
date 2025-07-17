@@ -9,7 +9,7 @@ import { supabase } from "@repo/shared/lib/superbase/supabaseClient";
 import { useAppSelector } from "@repo/shared/redux/hooks";
 import { selectUser } from "@repo/shared/redux/slices/user/userSlice";
 import { userSupaType } from "@repo/shared/types/auth";
-import { en as locale } from "@repo/shared/locale/index";
+import { locale } from "@repo/shared/locale/index";
 
 import { Button } from "@/components/ui/button";
 import {

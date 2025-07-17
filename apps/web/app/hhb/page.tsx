@@ -7,7 +7,7 @@ import { GlassWater } from "lucide-react";
 import { ShowerHead } from "lucide-react";
 import { Flower } from "lucide-react";
 
-import { en as locale } from "@repo/shared/locale/index";
+import { locale } from "@repo/shared/locale/index";
 import { HHB_TYPE } from "@repo/shared/const/hhb";
 
 import PageHeader from "@/layout/headers/page";

@@ -1,14 +1,15 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-import Logo from "@repo/shared/components/logos/header";
-import getTheme, { setTheme } from "@repo/shared/utils/theme";
-
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
-import { en as locale } from "@repo/shared/locale/index";
+import Logo from "@repo/shared/components/logos/header";
 import UserLoginButton from "@repo/shared/components/auth/UserLoginButton";
+import getTheme, { setTheme } from "@repo/shared/utils/theme";
+import { locale } from "@repo/shared/locale/index";
+
+import Language from "@/components/dropdowns/Language";
 
 export default function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -57,6 +58,8 @@ export default function Header() {
         <Logo path={renderLogoPath()} width={164} height={55} alt="Jasoria" />
       </div>
       <div className="float-right flex justify-center space-x-2 items-start ">
+        <Language />
+
         <div className="flex items-center space-x-2 pt-2">
           <Switch
             id="airplane-mode"
@@ -70,8 +73,6 @@ export default function Header() {
             {isDarkMode ? locale.theme_dark : locale.theme_light}
           </Label>
         </div>
-
-        <span>EN</span>
 
         <UserLoginButton />
       </div>
