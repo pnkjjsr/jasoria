@@ -1,18 +1,21 @@
 {
-  "theme_dark": "Dark",
-  "theme_light": "Light",
+  "theme_dark": "रात",
+  "theme_light": "दिन",
 
-  "home": {
-    "title": "होम",
-    "description": "Welcome to the home page of our application. Here you can find various features and functionalities that we offer.",
+  "homepage": {
     "h1": {
-      "first": "एकल स्मार्ट प्लेटफ़ॉर्म के साथ",
-      "second": "छोटे व्यवसायों का रूपांतरण"
+      "first": "एक जगह से पूरा बिज़नेस आसान बनाएं",
+      "second": "व्यापार के लिए एक सिंपल और स्मार्ट हल"
     }
   },
 
+  "navbar": {
+    "home": "मुख्य पेज",
+    "hhb": "हाउस हेल्प बुक"
+  },
+
   "buttons": {
-    "login": "Login",
+    "login": "खाता खोलें",
     "cancel": "Cancel",
     "save": "Save changes",
     "lets_start": "Lets Start",
@@ -25,8 +28,9 @@
     "error": "Error"
   },
 
-  "login_heading": "Login",
-  "login_sub": "Enjoy free services, Just log in easily.",
+  "google": "गूगल",
+  "login_heading": "खाता खोलें",
+  "login_sub": "फ्री सेवाओं का मज़ा लें, बस आसानी से लॉग इन करें।",
 
   "account_menu": {
     "heading": "My Account",
@@ -45,9 +49,9 @@
   },
 
   "feature_hhb": {
-    "title": "House Help Book",
-    "heading": "Keep Your Support Contact Just a Tap Away",
-    "sub": "Store and share essential support contacts when it matters most."
+    "title": "हाउस हेल्प बुक",
+    "heading": "आपका हेल्प कॉन्टैक्ट हमेशा पास में – एक टैप पर",
+    "sub": "जरूरत के वक्त मदद के कॉन्टैक्ट संभाल कर रखें और शेयर करें।"
   },
   "hhb_maid": {
     "heading": "Maid",

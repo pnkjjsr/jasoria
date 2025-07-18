@@ -2,13 +2,16 @@
   "theme_dark": "Dark",
   "theme_light": "Light",
 
-  "home": {
-    "title": "Home",
-    "description": "Welcome to the home page of our application. Here you can find various features and functionalities that we offer.",
+  "homepage": {
     "h1": {
       "first": "Transforming Small Businesses",
       "second": "With A Single Smart Platform"
     }
+  },
+
+  "navbar": {
+    "home": "Home",
+    "hhb": "House Help Book"
   },
 
   "buttons": {
@@ -25,6 +28,7 @@
     "error": "Error"
   },
 
+  "google": "Google",
   "login_heading": "Login",
   "login_sub": "Enjoy free services, Just log in easily.",
 

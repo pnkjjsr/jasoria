@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTranslations } from "next-intl";
 
 import { useMediaQuery } from "@/hooks/use-media-query";
 import {
@@ -21,10 +22,10 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 
-import { locale } from "@repo/shared/locale/index";
 import GoogleLoginButton from "@repo/shared/components/auth/GoogleLoginButton";
 
 export function DrawerDialogLogin() {
+  const t = useTranslations();
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -32,12 +33,12 @@ export function DrawerDialogLogin() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button>{locale.buttons.login}</Button>
+          <Button>{t("buttons.login")}</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>{locale.login_heading}</DialogTitle>
-            <DialogDescription>{locale.login_sub}</DialogDescription>
+            <DialogTitle>{t("login_heading")}</DialogTitle>
+            <DialogDescription>{t("login_sub")}</DialogDescription>
           </DialogHeader>
           <GoogleLoginButton />
           {/* <LoginForm /> */}
@@ -49,18 +50,18 @@ export function DrawerDialogLogin() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button>{locale.buttons.login}</Button>
+        <Button>{t("buttons.login")}</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>{locale.login_heading}</DrawerTitle>
-          <DrawerDescription>{locale.login_sub}</DrawerDescription>
+          <DialogTitle>{t("login_heading")}</DialogTitle>
+          <DialogDescription>{t("login_sub")}</DialogDescription>
         </DrawerHeader>
         <GoogleLoginButton />
         {/* <LoginForm className="px-4" /> */}
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">{locale.buttons.cancel}</Button>
+            <Button variant="outline">{t("buttons.cancel")}</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

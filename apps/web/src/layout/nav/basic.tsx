@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import { cn } from "@/lib/utils";
 import {
@@ -46,6 +47,8 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export default function NavigationMenuDemo() {
+  const t = useTranslations();
+
   return (
     <nav className="lg:w-1/2 md:w-3/4 mx-2 md:mx-auto bg-background p-4 mt-4 border rounded-4xl shadow-lg transition-transform duration-300 ease-in-out hover:shadow-2xl hover:scale-105">
       <NavigationMenu className="w-auto mx-auto">
@@ -56,7 +59,7 @@ export default function NavigationMenuDemo() {
               asChild
             >
               <Link href="/" passHref>
-                Home
+                {t("navbar.home")}
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
@@ -67,7 +70,7 @@ export default function NavigationMenuDemo() {
               asChild
             >
               <Link href="/hhb" passHref>
-                House Help Book
+                {t("navbar.hhb")}
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -7,11 +8,11 @@ import { Switch } from "@/components/ui/switch";
 import Logo from "@repo/shared/components/logos/header";
 import UserLoginButton from "@repo/shared/components/auth/UserLoginButton";
 import getTheme, { setTheme } from "@repo/shared/utils/theme";
-import { locale } from "@repo/shared/locale/index";
 
 import Language from "@/components/dropdowns/Language";
 
 export default function Header() {
+  const t = useTranslations();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isUserPrefersDarkMode, setIsUserPrefersDarkMode] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -70,7 +71,7 @@ export default function Header() {
             className="w-[34] transition delay-100 duration-200 ease-in-out"
             htmlFor="airplane-mode"
           >
-            {isDarkMode ? locale.theme_dark : locale.theme_light}
+            {isDarkMode ? t("theme_dark") : t("theme_light")}
           </Label>
         </div>
 

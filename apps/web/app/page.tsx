@@ -2,8 +2,6 @@ import * as motion from "motion/react-client";
 import { NotebookPen } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import { locale } from "@repo/shared/locale/index";
-
 import FeatureInfo from "@/components/cards/HHB_Feature/FeatureInfo";
 
 export default function Home() {
@@ -19,9 +17,9 @@ export default function Home() {
       >
         <div className="flex flex-col items-center justify-center my-10 lg:my-20">
           <h1 className="xl:w-7xl text-2xl md:text-5xl/15 lg:text-6xl/20 block text-center font-semibold">
-            {t("home.h1.first")}
+            {t("homepage.h1.first")}
             <br />
-            {t("home.h1.second")}
+            {t("homepage.h1.second")}
           </h1>
         </div>
       </motion.div>
@@ -30,7 +28,7 @@ export default function Home() {
         title={t("feature_hhb.title")}
         heading={t("feature_hhb.heading")}
         sub={t("feature_hhb.sub")}
-        cta={t("feature_hhb.lets_start")}
+        cta={t("buttons.lets_start")}
         href="/hhb"
       />
     </>
