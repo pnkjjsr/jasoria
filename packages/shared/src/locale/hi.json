@@ -42,10 +42,10 @@
   "profile_sub": "Manage your account details",
 
   "profile_form": {
-    "email": "Email",
-    "mobile": "Mobile",
-    "firstname": "First Name",
-    "lastname": "Last Name"
+    "email": "ईमेल",
+    "mobile": "मोबाइल",
+    "firstname": "नाम",
+    "lastname": "अंतिम नाम"
   },
 
   "feature_hhb": {
@@ -54,43 +54,43 @@
     "sub": "जरूरत के वक्त मदद के कॉन्टैक्ट संभाल कर रखें और शेयर करें।"
   },
   "hhb_maid": {
-    "heading": "Maid",
-    "sub": "My Clean God!",
-    "cta": "Save Maid"
+    "heading": "कामवाली दीदी",
+    "sub": "घर की भरोसेमंद मददगार",
+    "cta": "सुरक्षित करें"
   },
   "hhb_plumber": {
-    "heading": "Plumber",
-    "sub": "My Water Saviour!",
-    "cta": "Save Plumber"
+    "heading": "प्लंबर",
+    "sub": "पानी की हर समस्या का हल",
+    "cta": "सुरक्षित करें"
   },
   "hhb_electrician": {
-    "heading": "Electrician",
-    "sub": "My Electric Hero!",
-    "cta": "Save Electrician"
+    "heading": "बिजली वाला",
+    "sub": "मेरे घर की रौशनी का रखवाला!",
+    "cta": "सुरक्षित करें"
   },
   "hhb_acservice": {
-    "heading": "AC Repair/Service",
-    "sub": "My AC Saviour!",
-    "cta": "Save AC Service"
+    "heading": "AC रिपेयर/सर्विस",
+    "sub": "ठंडी हवा लौटाने वाला मास्टर",
+    "cta": "सुरक्षित करें"
   },
   "hhb_carpenter": {
-    "heading": "Carpenter",
-    "sub": "My Furniture Saviour!",
-    "cta": "Save Carpenter"
+    "heading": "फर्नीचर वाला",
+    "sub": "हर टेबल, कुर्सी का डॉक्टर!",
+    "cta": "सुरक्षित करें"
   },
   "hhb_roservice": {
-    "heading": "RO Repair/Service",
-    "sub": "My Water Saviour!",
-    "cta": "Save RO Service"
+    "heading": "RO रिपेयर/सर्विस",
+    "sub": "जिससे हर घूंट रहे सुरक्षित",
+    "cta": "सुरक्षित करें"
   },
   "hhb_geyser": {
-    "heading": "Geyser Repair",
-    "sub": "My Bathroom Hero!",
-    "cta": "Save Geyser Man"
+    "heading": "गीज़र रिपेयर/सर्विस",
+    "sub": "मेरे बाथरूम का सुपरस्टार!",
+    "cta": "सुरक्षित करें"
   },
   "hhb_gardener": {
-    "heading": "Gardener",
-    "sub": "My Garden Saviour!",
-    "cta": "Save Gardener"
+    "heading": "माली",
+    "sub": "मेरे बगीचे का रखवाला",
+    "cta": "सुरक्षित करें"
   }
 }

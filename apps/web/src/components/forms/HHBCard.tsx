@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -39,6 +40,7 @@ const FormSchema = z.object({
 });
 
 export default function HHBCard(props: any) {
+  const t = useTranslations();
   const { cta, type, helpData, setHelpData, editStatus, editToggle } = props;
   const user = useAppSelector(selectUser);
 
@@ -110,7 +112,7 @@ export default function HHBCard(props: any) {
                 <FormControl>
                   <Input
                     className="h-8 text-sm"
-                    placeholder="Phone Number"
+                    placeholder={t("profile_form.mobile")}
                     {...field}
                   />
                 </FormControl>
@@ -129,7 +131,7 @@ export default function HHBCard(props: any) {
                 <FormControl>
                   <Input
                     className="h-8 text-sm"
-                    placeholder="First Name"
+                    placeholder={t("profile_form.firstname")}
                     {...field}
                   />
                 </FormControl>
@@ -146,7 +148,7 @@ export default function HHBCard(props: any) {
                 <FormControl>
                   <Input
                     className="h-8 text-sm"
-                    placeholder="Last Name"
+                    placeholder={t("profile_form.lastname")}
                     {...field}
                   />
                 </FormControl>
