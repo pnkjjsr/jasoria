@@ -11,16 +11,16 @@
 
   "navbar": {
     "home": "मुख्य पेज",
-    "hhb": "हाउस हेल्प बुक"
+    "hhb": "कामवालों की लिस्ट"
   },
 
   "buttons": {
     "login": "खाता खोलें",
-    "cancel": "Cancel",
-    "save": "Save changes",
-    "lets_start": "Lets Start",
-    "edit": "Edit",
-    "delete": "Delete"
+    "cancel": "रद्द करें",
+    "save": "सुरक्षित करें",
+    "lets_start": "शुरुआत करें",
+    "edit": "बदलें",
+    "delete": "मिटाएं"
   },
 
   "toost": {
@@ -33,13 +33,13 @@
   "login_sub": "फ्री सेवाओं का मज़ा लें, बस आसानी से लॉग इन करें।",
 
   "account_menu": {
-    "heading": "My Account",
-    "profile": "Profile",
-    "logout": "Log out"
+    "heading": "मेरा खाता",
+    "profile": "मेरा विवरण",
+    "logout": "बाहर निकलें"
   },
 
-  "profile_heading": "Profile",
-  "profile_sub": "Manage your account details",
+  "profile_heading": "मेरा विवरण",
+  "profile_sub": "खाते का विवरण बदलें या देखें",
 
   "profile_form": {
     "email": "ईमेल",

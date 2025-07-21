@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import * as motion from "motion/react-client";
 import { Pencil } from "lucide-react";
 import { Trash } from "lucide-react";
@@ -109,6 +110,7 @@ function Skelton() {
 }
 
 function Preview(props: any) {
+  const t = useTranslations();
   const { editToggle } = props;
   const { user_id, type, firstname, lastname, phonenumber } = props.data;
 
@@ -139,7 +141,7 @@ function Preview(props: any) {
           variant="secondary"
           onClick={handleDelete}
         >
-          <Trash /> {locale.buttons.delete}
+          <Trash /> {t("buttons.delete")}
         </Button>
 
         <Button
@@ -147,7 +149,7 @@ function Preview(props: any) {
           variant="outline"
           onClick={handleEdit}
         >
-          <Pencil /> {locale.buttons.edit}
+          <Pencil /> {t("buttons.edit")}
         </Button>
       </div>
     </div>

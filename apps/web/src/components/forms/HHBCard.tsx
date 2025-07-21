@@ -10,7 +10,6 @@ import { supabase } from "@repo/shared/lib/superbase/supabaseClient";
 import { useAppSelector } from "@repo/shared/redux/hooks";
 import { selectUser } from "@repo/shared/redux/slices/user/userSlice";
 import { userSupaType } from "@repo/shared/types/auth";
-import { locale } from "@repo/shared/locale/index";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -32,10 +31,10 @@ const FormSchema = z.object({
       message: "Maximum 10 characters.",
     }),
   firstname: z.string().min(1, {
-    message: "First name is required.",
+    message: "Is required.",
   }),
   lastname: z.string().min(1, {
-    message: "Last name is required.",
+    message: "Is required.",
   }),
 });
 
@@ -161,7 +160,7 @@ export default function HHBCard(props: any) {
         <div className="grid grid-cols-[1fr_3fr]  grid-template gap-4">
           {editStatus && (
             <Button variant="secondary" className="w-full" onClick={editToggle}>
-              {locale.buttons.cancel}
+              {t("buttons.cancel")}
             </Button>
           )}
 

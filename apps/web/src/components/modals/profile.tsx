@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useCallback } from "react";
+import { useTranslations } from "next-intl";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -54,6 +55,7 @@ export function DrawerDialogProfile({
   open,
   setOpen,
 }: DrawerDialogProfileProps) {
+  const t = useTranslations();
   const isDesktop = useMediaQuery("(min-width: 640px)");
 
   if (isDesktop) {
@@ -61,8 +63,8 @@ export function DrawerDialogProfile({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>{locale.profile_heading}</DialogTitle>
-            <DialogDescription>{locale.profile_sub}</DialogDescription>
+            <DialogTitle>{t("profile_heading")}</DialogTitle>
+            <DialogDescription>{t("profile_sub")}</DialogDescription>
           </DialogHeader>
           <ProfileForm />
         </DialogContent>
@@ -74,13 +76,13 @@ export function DrawerDialogProfile({
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DialogTitle>{locale.profile_heading}</DialogTitle>
-          <DialogDescription>{locale.profile_sub}</DialogDescription>
+          <DialogTitle>{t("profile_heading")}</DialogTitle>
+          <DialogDescription>{t("profile_sub")}</DialogDescription>
         </DrawerHeader>
         <ProfileForm />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">{locale.buttons.cancel}</Button>
+            <Button variant="outline">{t("buttons.cancel")}</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
@@ -112,6 +114,7 @@ const FormSchema = z.object({
 });
 
 function ProfileForm() {
+  const t = useTranslations();
   const user = useAppSelector(selectUser);
   const profile = useAppSelector(selectProfile) as userType | null;
   const dispatch = useAppDispatch();
@@ -160,9 +163,9 @@ function ProfileForm() {
             name="email"
             render={({ field }) => (
               <FormItem className="flex align-baseline flex-col">
-                <FormLabel>{locale.profile_form.email}</FormLabel>
+                <FormLabel>{t("profile_form.email")}</FormLabel>
                 <FormControl>
-                  <Input placeholder={locale.profile_form.email} {...field} />
+                  <Input placeholder={t("profile_form.email")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -174,11 +177,11 @@ function ProfileForm() {
             name="mobile"
             render={({ field }) => (
               <FormItem className="flex align-baseline flex-col">
-                <FormLabel>{locale.profile_form.mobile}</FormLabel>
+                <FormLabel>{t("profile_form.mobile")}</FormLabel>
                 <FormControl>
                   <Input
                     type="tel"
-                    placeholder={locale.profile_form.mobile}
+                    placeholder={t("profile_form.mobile")}
                     {...field}
                   />
                 </FormControl>
@@ -192,11 +195,11 @@ function ProfileForm() {
             name="firstname"
             render={({ field }) => (
               <FormItem className="flex align-baseline flex-col">
-                <FormLabel>{locale.profile_form.firstname}</FormLabel>
+                <FormLabel>{t("profile_form.firstname")}</FormLabel>
                 <FormControl>
                   <Input
                     type="text"
-                    placeholder={locale.profile_form.firstname}
+                    placeholder={t("profile_form.firstname")}
                     {...field}
                   />
                 </FormControl>
@@ -210,11 +213,11 @@ function ProfileForm() {
             name="lastname"
             render={({ field }) => (
               <FormItem className="flex align-baseline flex-col">
-                <FormLabel>{locale.profile_form.lastname}</FormLabel>
+                <FormLabel>{t("profile_form.lastname")}</FormLabel>
                 <FormControl>
                   <Input
                     type="text"
-                    placeholder={locale.profile_form.lastname}
+                    placeholder={t("profile_form.lastname")}
                     {...field}
                   />
                 </FormControl>
@@ -225,7 +228,7 @@ function ProfileForm() {
         </div>
 
         <div className="grid w-full px-4 sm:px-0">
-          <Button type="submit">{locale.buttons.save}</Button>
+          <Button type="submit">{t("buttons.save")}</Button>
         </div>
       </form>
     </Form>

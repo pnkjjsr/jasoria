@@ -23,6 +23,11 @@
     "delete": "Delete"
   },
 
+  "errors": {
+    "invalid_mobile": "Invalid mobile number",
+    "min_tenth": "Minimum 10 characters."
+  },
+
   "toost": {
     "success": "Success",
     "error": "Error"

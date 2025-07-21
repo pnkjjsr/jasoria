@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslations } from "next-intl";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -12,8 +13,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DrawerDialogProfile } from "@/components/modals/profile";
 
-import { locale } from "@repo/shared/locale/index";
 import { userSupaType } from "@repo/shared/types/auth";
+import { getInitials } from "@repo/shared/utils/common";
 
 interface propsData {
   user: userSupaType;
@@ -21,6 +22,7 @@ interface propsData {
 }
 
 export default function UserMenu(props: propsData) {
+  const t = useTranslations();
   const { user, logout } = props;
   const [open, setOpen] = React.useState(false);
 
@@ -35,25 +37,25 @@ export default function UserMenu(props: propsData) {
               alt={user.name}
             />
             <AvatarFallback className="cursor-pointer">
-              {user.name}
+              {getInitials(user.name)}
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
-          <DropdownMenuLabel>{locale.account_menu.heading}</DropdownMenuLabel>
+          <DropdownMenuLabel>{t("account_menu.heading")}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem
               className="cursor-pointer"
               onClick={() => setOpen(true)}
             >
-              {locale.account_menu.profile}
+              {t("account_menu.profile")}
             </DropdownMenuItem>
             {/* <DropdownMenuItem>Settings</DropdownMenuItem> */}
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="cursor-pointer" onClick={logout}>
-            {locale.account_menu.logout}
+            {t("account_menu.logout")}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
