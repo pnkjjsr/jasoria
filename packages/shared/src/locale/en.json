@@ -97,5 +97,12 @@
     "heading": "Gardener",
     "sub": "My Garden Saviour!",
     "cta": "Save Gardener"
+  },
+  "hhb_import": {
+    "heading": "Easy Import",
+    "sub": "Easily import from your contacts, store them, and share anytime.",
+    "cta": "Start Importing",
+    "error_title":"Contact Import Not Available",
+    "error_text":"Import available on Android Mobile Browsers only"
   }
 }

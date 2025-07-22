@@ -12,12 +12,15 @@ import { HHB_TYPE } from "@repo/shared/const/hhb";
 
 import PageHeader from "@/layout/headers/page";
 import FeatureForm from "@/components/cards/HHB_Feature/FeatureForm";
+import ImportHHB from "@/components/cards/HHB_Feature/Import";
 
 export default function HHB() {
   const t = useTranslations();
   return (
     <div className="container w-auto lg:w-5xl mx-4 xl:mx-auto my-5 md:my-10 leading-0">
       <PageHeader title={t("feature_hhb.title")} sub={t("feature_hhb.sub")} />
+
+      <ImportHHB />
 
       <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
         <FeatureForm
