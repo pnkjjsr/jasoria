@@ -6,3 +6,27 @@ export const getInitials = (name: string) => {
     .toUpperCase();
   return initials;
 };
+
+export const isNavigatorContacts = () => {
+  if ("contacts" in navigator) {
+    return navigator.contacts;
+  }
+
+  return null;
+};
+
+export const getNavigatorContacts = async () => {
+  try {
+    if (!("contacts" in navigator)) {
+      alert("Contact Picker API is not supported on this browser.");
+      return;
+    }
+    const props = ["name", "tel", "email"]; // You can include 'address', 'icon' etc.
+    const opts = { multiple: true };
+    const contacts = await (navigator.contacts as any).select(props, opts);
+
+    return contacts;
+  } catch (err) {
+    console.error("Failed to fetch contacts:", err);
+  }
+};

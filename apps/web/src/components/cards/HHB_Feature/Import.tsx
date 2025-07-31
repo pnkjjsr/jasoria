@@ -16,30 +16,36 @@ import { Button } from "@/components/ui/button";
 import { AlertCircleIcon } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
+import {
+  isNavigatorContacts,
+  getNavigatorContacts,
+} from "@repo/shared/utils/common";
+
 export default function ImportHHB() {
   const t = useTranslations("hhb_import");
   const [isSupported, setIsSupported] = React.useState(false);
+  const [contacts, setContacts] = React.useState([]);
 
   const handleImport = async () => {
-    try {
-      if (!("contacts" in navigator)) {
-        alert("Contact Picker API is not supported on this browser.");
-        return;
-      }
-      const props = ["name", "tel", "email"]; // You can include 'address', 'icon' etc.
-      const opts = { multiple: true };
+    const contacts = await getNavigatorContacts();
+    setContacts(contacts);
+  };
 
-      const contacts = await (navigator.contacts as any).select(props, opts);
-
-      console.log("Imported Contacts:", contacts);
-      // You can now save or display these contacts
-    } catch (err) {
-      console.error("Failed to fetch contacts:", err);
-    }
+  const renderContacts = () => {
+    return contacts.map((contact: any) => {
+      return (
+        <div key={contact.id}>
+          <p>{contact.name}</p>
+          <p>{contact.tel}</p>
+          <p>{contact.email}</p>
+        </div>
+      );
+    });
   };
 
   useEffect(() => {
-    if ("contacts" in navigator) {
+    const navigator = isNavigatorContacts();
+    if (navigator) {
       setIsSupported(true);
       return;
     }
@@ -77,6 +83,12 @@ export default function ImportHHB() {
             </Alert>
           ) : (
             <Button onClick={handleImport}>{t("cta")}</Button>
+          )}
+          {contacts.length > 0 && (
+            <div className="mt-4">
+              <h3 className="text-xl font-semibold">Contacts</h3>
+              {renderContacts()}
+            </div>
           )}
         </CardFooter>
       </Card>
