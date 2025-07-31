@@ -39,8 +39,8 @@ export default function ImportHHB() {
   };
 
   useEffect(() => {
-    if (!("contacts" in navigator) || !("ContactsManager" in window)) {
-      setIsSupported(false);
+    if ("contacts" in navigator) {
+      setIsSupported(true);
       return;
     }
   }, []);
