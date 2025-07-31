@@ -22,7 +22,7 @@ export default function ImportHHB() {
 
   const handleImport = async () => {
     try {
-      if (!("contacts" in navigator) || !("ContactsManager" in window)) {
+      if (!("contacts" in navigator)) {
         alert("Contact Picker API is not supported on this browser.");
         return;
       }
