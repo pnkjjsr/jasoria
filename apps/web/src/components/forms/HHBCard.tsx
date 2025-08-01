@@ -48,6 +48,7 @@ export default function HHBCard(props: any) {
   const user = useAppSelector(selectUser);
   const { cta, type, helpData, setHelpData, editStatus, editToggle } = props;
   const [isSupported, setIsSupported] = useState(false);
+  const [contacts, setContacts] = useState([]);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -102,7 +103,9 @@ export default function HHBCard(props: any) {
   }
 
   const handleImport = async () => {
-    const contacts = await getNavigatorContacts(false);
+    const props = ["name", "tel"];
+    const opts = false;
+    const contacts = await getNavigatorContacts(props, opts);
 
     form.setValue("firstname", contacts[0].name[0].value);
     form.setValue("lastname", contacts[0].name[1].value);
@@ -116,6 +119,19 @@ export default function HHBCard(props: any) {
       return;
     }
   }, []);
+
+  const renderContacts = () => {
+    return contacts.map((contact: any) => {
+      return (
+        <div key={contact.id}>
+          <p>{contact.name}</p>
+          <p>{contact.name[0]}</p>
+          <p>{contact.name[1]}</p>
+          <p>{contact.tel}</p>
+        </div>
+      );
+    });
+  };
 
   return (
     <Form {...form}>
@@ -200,6 +216,8 @@ export default function HHBCard(props: any) {
             </Button>
           )}
         </div>
+
+        {renderContacts()}
       </form>
     </Form>
   );
