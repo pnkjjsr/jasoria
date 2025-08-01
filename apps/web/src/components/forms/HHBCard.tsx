@@ -189,7 +189,7 @@ export default function HHBCard(props: any) {
             {cta}
           </Button>
 
-          {!editStatus && !isSupported && (
+          {!editStatus && isSupported && (
             <Button
               className="w-full"
               type="button"
