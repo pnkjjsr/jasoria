@@ -20,7 +20,7 @@ export default function HHB() {
     <div className="container w-auto lg:w-5xl mx-4 xl:mx-auto my-5 md:my-10 leading-0">
       <PageHeader title={t("feature_hhb.title")} sub={t("feature_hhb.sub")} />
 
-      <ImportHHB />
+      {/* <ImportHHB /> */}
 
       <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
         <FeatureForm

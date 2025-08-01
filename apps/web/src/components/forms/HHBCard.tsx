@@ -1,11 +1,16 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import {
+  isNavigatorContacts,
+  getNavigatorContacts,
+} from "@repo/shared/utils/common";
 import { supabase } from "@repo/shared/lib/superbase/supabaseClient";
 import { useAppSelector } from "@repo/shared/redux/hooks";
 import { selectUser } from "@repo/shared/redux/slices/user/userSlice";
@@ -40,8 +45,9 @@ const FormSchema = z.object({
 
 export default function HHBCard(props: any) {
   const t = useTranslations();
-  const { cta, type, helpData, setHelpData, editStatus, editToggle } = props;
   const user = useAppSelector(selectUser);
+  const { cta, type, helpData, setHelpData, editStatus, editToggle } = props;
+  const [isSupported, setIsSupported] = useState(false);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -83,7 +89,6 @@ export default function HHBCard(props: any) {
       errHelp = error;
     } else {
       const { error } = await supabase.from("home_helps").upsert(payload);
-
       errHelp = error;
     }
 
@@ -95,6 +100,22 @@ export default function HHBCard(props: any) {
       // form.reset();
     }
   }
+
+  const handleImport = async () => {
+    const contacts = await getNavigatorContacts(false);
+
+    form.setValue("firstname", contacts[0].name[0].value);
+    form.setValue("lastname", contacts[0].name[1].value);
+    form.setValue("phonenumber", contacts[0].tel[0].value);
+  };
+
+  useEffect(() => {
+    const navigator = isNavigatorContacts();
+    if (navigator) {
+      setIsSupported(true);
+      return;
+    }
+  }, []);
 
   return (
     <Form {...form}>
@@ -157,7 +178,7 @@ export default function HHBCard(props: any) {
           />
         </div>
 
-        <div className="grid grid-cols-[1fr_3fr]  grid-template gap-4">
+        <div className="grid grid-cols-[1fr_1fr_1fr]  grid-template gap-4">
           {editStatus && (
             <Button variant="secondary" className="w-full" onClick={editToggle}>
               {t("buttons.cancel")}
@@ -167,6 +188,17 @@ export default function HHBCard(props: any) {
           <Button className="w-full" type="submit">
             {cta}
           </Button>
+
+          {!editStatus && !isSupported && (
+            <Button
+              className="w-full"
+              type="button"
+              variant="outline"
+              onClick={handleImport}
+            >
+              Import
+            </Button>
+          )}
         </div>
       </form>
     </Form>

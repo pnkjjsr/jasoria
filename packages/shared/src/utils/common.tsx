@@ -15,14 +15,15 @@ export const isNavigatorContacts = () => {
   return null;
 };
 
-export const getNavigatorContacts = async () => {
+export const getNavigatorContacts = async (isMultiple = true) => {
   try {
     if (!("contacts" in navigator)) {
       alert("Contact Picker API is not supported on this browser.");
       return;
     }
-    const props = ["name", "tel", "email"]; // You can include 'address', 'icon' etc.
-    const opts = { multiple: true };
+    const props = ["name", "tel", "email", "address", "icon"];
+
+    const opts = { multiple: isMultiple  };
     const contacts = await (navigator.contacts as any).select(props, opts);
 
     return contacts;
