@@ -106,6 +106,7 @@ export default function HHBCard(props: any) {
     const props = ["name", "tel"];
     const opts = false;
     const contact = await getNavigatorContacts(props, opts);
+    setContacts(contact);
 
     form.setValue("firstname", contact[0].name[0]);
     form.setValue("lastname", contact[0].name[1]);
@@ -217,12 +218,10 @@ export default function HHBCard(props: any) {
           )}
         </div>
 
-        {contacts.length > 0 && (
-          <div className="mt-4">
-            <h3 className="text-xl font-semibold">Contacts</h3>
-            {renderContacts()}
-          </div>
-        )}
+        <div className="mt-4">
+          <h3 className="text-xl font-semibold">Contacts</h3>
+          {renderContacts()}
+        </div>
       </form>
     </Form>
   );
