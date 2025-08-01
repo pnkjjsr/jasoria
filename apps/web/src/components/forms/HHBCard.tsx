@@ -105,11 +105,11 @@ export default function HHBCard(props: any) {
   const handleImport = async () => {
     const props = ["name", "tel"];
     const opts = false;
-    const contacts = await getNavigatorContacts(props, opts);
+    const contact = await getNavigatorContacts(props, opts);
 
-    form.setValue("firstname", contacts[0].name[0].value);
-    form.setValue("lastname", contacts[0].name[1].value);
-    form.setValue("phonenumber", contacts[0].tel[0].value);
+    form.setValue("firstname", contact[0].name[0]);
+    form.setValue("lastname", contact[0].name[1]);
+    form.setValue("phonenumber", contact[0].tel);
   };
 
   useEffect(() => {
@@ -217,7 +217,12 @@ export default function HHBCard(props: any) {
           )}
         </div>
 
-        {renderContacts()}
+        {contacts.length > 0 && (
+          <div className="mt-4">
+            <h3 className="text-xl font-semibold">Contacts</h3>
+            {renderContacts()}
+          </div>
+        )}
       </form>
     </Form>
   );
