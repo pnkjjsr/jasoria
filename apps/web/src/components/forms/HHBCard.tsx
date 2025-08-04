@@ -111,26 +111,21 @@ export default function HHBCard(props: any) {
     setContacts(contact);
 
     const firstContact = contact[0];
-    const { firstName, lastName } = getFirstLastName(firstContact.name);
+    const { firstName, lastName } = getFirstLastName(firstContact.name[0]);
     if (firstContact) {
       form.setValue("firstname", firstName);
       form.setValue("lastname", lastName);
-      form.setValue("phonenumber", getFirstWord(firstContact.tel));
+      form.setValue("phonenumber", getFirstWord(firstContact.tel[0]));
     }
   };
 
   const renderContacts = () => {
     return contacts.map((contact: any) => {
-      const { firstName, lastName } = getFirstLastName(contact);
-      const tel = getFirstWord(contact.tel);
+      const { firstName, lastName } = getFirstLastName(contact.name[0]);
+      const tel = getFirstWord(contact.tel[0]);
       return (
         <div key={contact.id}>
-          <br />
-          <p>{firstName}</p>
-          <br />
-          <p>{lastName}</p>
-          <br />
-          <p>{tel}</p>
+          {firstName} {lastName} {tel}
         </div>
       );
     });
