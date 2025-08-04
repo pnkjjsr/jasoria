@@ -119,6 +119,23 @@ export default function HHBCard(props: any) {
     }
   };
 
+  const renderContacts = () => {
+    return contacts.map((contact: any) => {
+      const { firstName, lastName } = getFirstLastName(contact);
+      const tel = getFirstWord(contact.tel);
+      return (
+        <div key={contact.id}>
+          <br />
+          <p>{firstName}</p>
+          <br />
+          <p>{lastName}</p>
+          <br />
+          <p>{tel}</p>
+        </div>
+      );
+    });
+  };
+
   useEffect(() => {
     const navigator = isNavigatorContacts();
     if (navigator) {
@@ -126,19 +143,6 @@ export default function HHBCard(props: any) {
       return;
     }
   }, []);
-
-  const renderContacts = () => {
-    return contacts.map((contact: any) => {
-      return (
-        <div key={contact.id}>
-          <p>{contact.name}</p>
-          <p>{contact.name[0]}</p>
-          <p>{contact.name[1]}</p>
-          <p>{contact.tel}</p>
-        </div>
-      );
-    });
-  };
 
   return (
     <Form {...form}>
