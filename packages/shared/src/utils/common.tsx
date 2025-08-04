@@ -33,3 +33,25 @@ export const getNavigatorContacts = async (
     console.error("Failed to fetch contacts:", err);
   }
 };
+
+export const getFirstWord = (contact: string) => {
+  if (!contact || typeof contact !== 'string') {
+    return '';
+  }
+  
+  // Split by comma and get the first item, then trim whitespace
+  const parts = contact.split(',');
+  const firstItem = parts[0];
+  return firstItem ? firstItem.trim() : '';
+};
+
+export const getFirstLastName = (fullname: string) => {
+  if (!fullname || typeof fullname !== 'string') {
+    return { firstName: '', lastName: '' };
+  }
+
+  const nameParts = fullname.split(' ');
+  const firstName = nameParts[0] || '';
+  const lastName = nameParts.slice(1).join(' ') || '';
+  return { firstName, lastName };
+};

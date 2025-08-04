@@ -10,6 +10,8 @@ import { z } from "zod";
 import {
   isNavigatorContacts,
   getNavigatorContacts,
+  getFirstWord,
+  getFirstLastName,
 } from "@repo/shared/utils/common";
 import { supabase } from "@repo/shared/lib/superbase/supabaseClient";
 import { useAppSelector } from "@repo/shared/redux/hooks";
@@ -108,9 +110,13 @@ export default function HHBCard(props: any) {
     const contact = await getNavigatorContacts(props, opts);
     setContacts(contact);
 
-    form.setValue("firstname", contact[0].name[0]);
-    form.setValue("lastname", contact[0].name[1]);
-    form.setValue("phonenumber", contact[0].tel);
+    const firstContact = contact[0];
+    const { firstName, lastName } = getFirstLastName(firstContact.name);
+    if (firstContact) {
+      form.setValue("firstname", firstName);
+      form.setValue("lastname", lastName);
+      form.setValue("phonenumber", getFirstWord(firstContact.tel));
+    }
   };
 
   useEffect(() => {
