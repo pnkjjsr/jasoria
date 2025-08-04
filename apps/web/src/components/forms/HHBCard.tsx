@@ -11,7 +11,7 @@ import {
   isNavigatorContacts,
   getNavigatorContacts,
   getFirstWord,
-  getFirstLastName,
+  parseFullName,
 } from "@repo/shared/utils/common";
 import { supabase } from "@repo/shared/lib/superbase/supabaseClient";
 import { useAppSelector } from "@repo/shared/redux/hooks";
@@ -111,24 +111,12 @@ export default function HHBCard(props: any) {
     setContacts(contact);
 
     const firstContact = contact[0];
-    const { firstName, lastName } = getFirstLastName(firstContact.name[0]);
+    const { firstName, lastName } = parseFullName(firstContact.name[0]);
     if (firstContact) {
       form.setValue("firstname", firstName);
       form.setValue("lastname", lastName);
       form.setValue("phonenumber", getFirstWord(firstContact.tel[0]));
     }
-  };
-
-  const renderContacts = () => {
-    return contacts.map((contact: any) => {
-      const { firstName, lastName } = getFirstLastName(contact.name[0]);
-      const tel = getFirstWord(contact.tel[0]);
-      return (
-        <div key={contact.id}>
-          {firstName} {lastName} {tel}
-        </div>
-      );
-    });
   };
 
   useEffect(() => {
@@ -221,11 +209,6 @@ export default function HHBCard(props: any) {
               Import
             </Button>
           )}
-        </div>
-
-        <div className="mt-4">
-          <h3 className="text-xl font-semibold">Contacts</h3>
-          {renderContacts()}
         </div>
       </form>
     </Form>

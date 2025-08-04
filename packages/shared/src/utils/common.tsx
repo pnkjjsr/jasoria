@@ -35,23 +35,27 @@ export const getNavigatorContacts = async (
 };
 
 export const getFirstWord = (contact: string) => {
-  if (!contact || typeof contact !== 'string') {
-    return '';
+  if (!contact || typeof contact !== "string") {
+    return "";
   }
-  
+
   // Split by comma and get the first item, then trim whitespace
-  const parts = contact.split(',');
+  const parts = contact.split(",");
   const firstItem = parts[0];
-  return firstItem ? firstItem.trim() : '';
+  return firstItem ? removeSpaces(firstItem.trim()) : "";
 };
 
-export const getFirstLastName = (fullname: string) => {
-  if (!fullname || typeof fullname !== 'string') {
-    return { firstName: '', lastName: '' };
+export const parseFullName = (fullname: string) => {
+  if (!fullname || typeof fullname !== "string") {
+    return { firstName: "", lastName: "" };
   }
 
-  const nameParts = fullname.split(' ');
-  const firstName = nameParts[0] || '';
-  const lastName = nameParts.slice(1).join(' ') || '';
+  const nameParts = fullname.split(" ");
+  const firstName = nameParts[0] || "";
+  const lastName = nameParts.slice(1).join(" ") || "";
   return { firstName, lastName };
+};
+
+export const removeSpaces = (str: string) => {
+  return str.replace(/\s+/g, "");
 };
