@@ -5,12 +5,14 @@ import { useTranslations } from "next-intl";
 import * as motion from "motion/react-client";
 import { Pencil } from "lucide-react";
 import { Trash } from "lucide-react";
+import { Share2 } from "lucide-react";
 
 import { supabase } from "@repo/shared/lib/superbase/supabaseClient";
 import { useAppSelector } from "@repo/shared/redux/hooks";
 import { selectUser } from "@repo/shared/redux/slices/user/userSlice";
 import { FeatureFormType } from "@repo/shared/types/common";
 import { userSupaType } from "@repo/shared/types/auth";
+import { webShare } from "@repo/shared/utils/common";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -109,6 +111,7 @@ function Skelton() {
 }
 
 function Preview(props: any) {
+  const user = useAppSelector(selectUser);
   const t = useTranslations();
   const { editToggle } = props;
   const { user_id, type, firstname, lastname, phonenumber } = props.data;
@@ -125,6 +128,17 @@ function Preview(props: any) {
       .eq("type", type);
 
     editToggle();
+  };
+
+  const handleShare = async () => {
+    const { name } = user as userSupaType;
+
+    const data = {
+      text: `Hi, ${name} is sharing his ${type}'s contact details with you.`,
+      url: `${window.location.origin}/hhb?type=${type}&firstname=${firstname}&lastname=${lastname}&phonenumber=${phonenumber}&user_id=${user_id}`,
+    };
+
+    webShare(data);
   };
 
   return (
@@ -149,6 +163,14 @@ function Preview(props: any) {
           onClick={handleEdit}
         >
           <Pencil /> {t("buttons.edit")}
+        </Button>
+
+        <Button
+          className="cursor-pointer"
+          variant="outline"
+          onClick={handleShare}
+        >
+          <Share2 /> {t("buttons.share")}
         </Button>
       </div>
     </div>

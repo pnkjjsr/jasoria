@@ -14,7 +14,6 @@ export interface FeatureInfoType {
   href: string;
 }
 
-
 export interface FeatureFormType {
   icon: React.ReactNode;
   heading: string;
@@ -22,3 +21,5 @@ export interface FeatureFormType {
   cta: string;
   type: string;
 }
+
+export type WebShareData = { url: string; text: string };

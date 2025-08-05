@@ -20,7 +20,8 @@
     "save": "Save changes",
     "lets_start": "Lets Start",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "share": "Share"
   },
 
   "errors": {

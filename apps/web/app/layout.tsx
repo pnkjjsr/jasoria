@@ -21,7 +21,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Jasoria",
-  description: "one platform for all your needs",
+  description: "Practical Solutions for Everyday Problems",
 };
 
 export default async function RootLayout({
