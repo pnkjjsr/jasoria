@@ -46,7 +46,7 @@ export default function DropdownLanguage() {
 
   return (
     <Select value={selected} onValueChange={handleChange}>
-      <SelectTrigger className="text-current font-semibold capitalize transition-none p-0 border-none shadow-none focus-visible:ring-0">
+      <SelectTrigger className="text-current font-semibold capitalize transition-none p-0 border-none shadow-none focus-visible:ring-0 dark:bg-opacity-0 dark:hover:bg-opacity-0">
         <SelectValue placeholder="English" />
       </SelectTrigger>
       <SelectContent>
