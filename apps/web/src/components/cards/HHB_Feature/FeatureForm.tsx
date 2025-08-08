@@ -1,24 +1,18 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
 import * as motion from "motion/react-client";
-import { Pencil } from "lucide-react";
-import { Trash } from "lucide-react";
-import { Share2 } from "lucide-react";
 
 import { supabase } from "@repo/shared/lib/superbase/supabaseClient";
 import { useAppSelector } from "@repo/shared/redux/hooks";
 import { selectUser } from "@repo/shared/redux/slices/user/userSlice";
 import { FeatureFormType } from "@repo/shared/types/common";
 import { userSupaType } from "@repo/shared/types/auth";
-import { webShare } from "@repo/shared/utils/common";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Button } from "@/components/ui/button";
 
 import HHBCard from "@/components/forms/HHBCard";
+import PreviewHHB from "@/components/cards/HHB_Feature/Preview";
 
 export default function FeatureForm(props: FeatureFormType) {
   const user = useAppSelector(selectUser);
@@ -42,6 +36,8 @@ export default function FeatureForm(props: FeatureFormType) {
 
       if (help_data) {
         setIsLoading(true);
+        console.log(help_data);
+        
 
         if (help_data?.length > 0) {
           setHelpData(help_data[0]);
@@ -76,7 +72,7 @@ export default function FeatureForm(props: FeatureFormType) {
           {!isLoading ? (
             <Skelton />
           ) : helpData && !edit ? (
-            <Preview data={helpData} editToggle={handleEdit} />
+            <PreviewHHB data={helpData} editToggle={handleEdit} />
           ) : (
             <HHBCard
               cta={cta}
@@ -106,73 +102,6 @@ function Skelton() {
       </div>
 
       <Skeleton className="h-[36px] w-full rounded-full" />
-    </div>
-  );
-}
-
-function Preview(props: any) {
-  const user = useAppSelector(selectUser);
-  const t = useTranslations();
-  const { editToggle } = props;
-  const { user_id, type, firstname, lastname, phonenumber } = props.data;
-
-  const handleEdit = () => {
-    editToggle();
-  };
-
-  const handleDelete = async () => {
-    await supabase
-      .from("home_helps")
-      .delete()
-      .eq("user_id", user_id)
-      .eq("type", type);
-
-    editToggle();
-  };
-
-  const handleShare = async () => {
-    const { name } = user as userSupaType;
-
-    const data = {
-      text: `Hi, ${name} is sharing his ${type}'s contact details with you.`,
-      url: `${window.location.origin}/hhb?type=${type}&firstname=${firstname}&lastname=${lastname}&phonenumber=${phonenumber}&user_id=${user_id}`,
-    };
-
-    webShare(data);
-  };
-
-  return (
-    <div className="w-full text-left">
-      <h2 className="text-3xl">
-        {firstname} {lastname}
-      </h2>
-      <p className="text-3xl">{phonenumber}</p>
-
-      <div className="flex mt-8 gap-3">
-        <Button
-          className="cursor-pointer"
-          variant="secondary"
-          onClick={handleDelete}
-        >
-          <Trash /> {t("buttons.delete")}
-        </Button>
-
-        <Button
-          className="cursor-pointer"
-          variant="outline"
-          onClick={handleEdit}
-        >
-          <Pencil /> {t("buttons.edit")}
-        </Button>
-
-        <Button
-          className="cursor-pointer"
-          variant="outline"
-          onClick={handleShare}
-        >
-          <Share2 /> {t("buttons.share")}
-        </Button>
-      </div>
     </div>
   );
 }

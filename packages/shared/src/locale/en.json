@@ -21,7 +21,8 @@
     "lets_start": "Lets Start",
     "edit": "Edit",
     "delete": "Delete",
-    "share": "Share"
+    "share": "Share",
+    "save_contact": "Save Contact"
   },
 
   "errors": {
@@ -29,9 +30,10 @@
     "min_tenth": "Minimum 10 characters."
   },
 
-  "toost": {
+  "toast": {
     "success": "Success",
-    "error": "Error"
+    "error": "Error",
+    "login_required": "Please login to save your contact."
   },
 
   "google": "Google",
@@ -103,7 +105,11 @@
     "heading": "Easy Import",
     "sub": "Easily import from your contacts, store them, and share anytime.",
     "cta": "Start Importing",
-    "error_title":"Contact Import Not Available",
-    "error_text":"Import available on Android Mobile Browsers only"
+    "error_title": "Contact Import Not Available",
+    "error_text": "Import available on Android Mobile Browsers only"
+  },
+  "hhb_open": {
+    "title": "Contact Shared With You",
+    "sub": "A trusted helper's contact has been shared with you"
   }
 }

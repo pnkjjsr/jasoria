@@ -1,28 +1,54 @@
+"use client";
 import React from "react";
+import { useSearchParams, usePathname } from "next/navigation";
+import * as motion from "motion/react-client";
 import { useTranslations } from "next-intl";
-import { Wrench } from "lucide-react";
-import { PlugZap } from "lucide-react";
-import { AirVent } from "lucide-react";
-import { Armchair } from "lucide-react";
-import { GlassWater } from "lucide-react";
-import { ShowerHead } from "lucide-react";
-import { Flower } from "lucide-react";
+import { toast } from "sonner";
+
+import {
+  Wrench,
+  PlugZap,
+  AirVent,
+  Armchair,
+  GlassWater,
+  ShowerHead,
+  Flower,
+} from "lucide-react";
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 import { HHB_TYPE } from "@repo/shared/const/hhb";
+import { useAppSelector } from "@repo/shared/redux/hooks";
+import { selectUser } from "@repo/shared/redux/slices/user/userSlice";
 
 import PageHeader from "@/layout/headers/page";
 import FeatureForm from "@/components/cards/HHB_Feature/FeatureForm";
-import ImportHHB from "@/components/cards/HHB_Feature/Import";
+import PreviewHHB from "@/components/cards/HHB_Feature/Preview";
 
 export default function HHB() {
   const t = useTranslations();
-  return (
-    <div className="container w-auto lg:w-5xl mx-4 xl:mx-auto my-5 md:my-10 leading-0">
-      <PageHeader title={t("feature_hhb.title")} sub={t("feature_hhb.sub")} />
 
-      {/* <ImportHHB /> */}
+  // Move all hooks to top level to avoid "Rendered fewer hooks than expected" error
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const user = useAppSelector(selectUser);
 
-      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
+  const sharedBy = searchParams?.get("user_id");
+  const type = searchParams?.get("type");
+  const firstname = searchParams?.get("firstname");
+  const lastname = searchParams?.get("lastname");
+  const phonenumber = searchParams?.get("phonenumber");
+
+  const renderHHBForm = () => {
+    return (
+      <>
         <FeatureForm
           icon={<AirVent size={80} strokeWidth={0.5} />}
           heading={t("hhb_maid.heading")}
@@ -86,6 +112,59 @@ export default function HHB() {
           cta={t("hhb_gardener.cta")}
           type={HHB_TYPE.GARDENER}
         />
+      </>
+    );
+  };
+
+  const renderHHBPreivew = () => {
+    const helpData = { sharedBy, type, firstname, lastname, phonenumber };
+    const fullPath = `${pathname}?${searchParams?.toString()}`;
+
+    sessionStorage.setItem("redirectURL", fullPath);
+
+    const handleSaveContact = () => {
+      const message = t("toast.login_required");
+      if (user === null) return toast.error(message);
+    };
+
+    return (
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -10, opacity: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <Card className="max-w-sm text-center gap-0 shadow-2xl opacity-90 relative">
+          <CardHeader>
+            <CardTitle className="text-xl sm:text-2xl text-left leading-6">
+              <h2 className="leading-5 font-semibold">{t("hhb_open.title")}</h2>
+              <small className="leading-auto text-base font-normal">
+                {t("hhb_open.sub")}
+              </small>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col items-center justify-center mt-2 mb-4">
+            <PreviewHHB data={helpData} view="open" />
+          </CardContent>
+
+          <CardFooter>
+            <Button className="cursor-pointer" onClick={handleSaveContact}>
+              {t("buttons.save_contact")}
+            </Button>
+          </CardFooter>
+        </Card>
+      </motion.div>
+    );
+  };
+
+  return (
+    <div className="container w-auto lg:w-5xl mx-4 xl:mx-auto my-5 md:my-10 leading-0">
+      <PageHeader title={t("feature_hhb.title")} sub={t("feature_hhb.sub")} />
+
+      {/* <ImportHHB /> */}
+
+      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
+        {type !== null ? renderHHBPreivew() : renderHHBForm()}
       </div>
     </div>
   );

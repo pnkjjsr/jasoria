@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
 
 import { StoreProvider } from "@repo/shared/redux/StoreProvider";
+import AuthStateHandler from "@repo/shared/components/auth/AuthStateHandler";
 
 import Header from "@/layout/headers/basic";
 import Nav from "@/layout/nav/basic";
@@ -33,11 +34,12 @@ export default async function RootLayout({
 
   return (
     <StoreProvider>
-      <html lang={locale}>
+      <html lang={locale} suppressHydrationWarning={true}>
         <body
           className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground`}
         >
           <NextIntlClientProvider>
+            <AuthStateHandler />
             <div className="sticky top-0 z-50">
               <Header />
               <Nav />
