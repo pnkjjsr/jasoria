@@ -34,7 +34,7 @@ export default async function RootLayout({
 
   return (
     <StoreProvider>
-      <html lang={locale} suppressHydrationWarning={true}>
+      <html lang={locale}>
         <body
           className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground`}
         >
