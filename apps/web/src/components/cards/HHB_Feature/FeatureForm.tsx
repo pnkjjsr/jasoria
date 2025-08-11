@@ -36,8 +36,6 @@ export default function FeatureForm(props: FeatureFormType) {
 
       if (help_data) {
         setIsLoading(true);
-        console.log(help_data);
-        
 
         if (help_data?.length > 0) {
           setHelpData(help_data[0]);

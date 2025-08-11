@@ -13,10 +13,10 @@ import {
   getFirstWord,
   parseFullName,
 } from "@repo/shared/utils/common";
-import { supabase } from "@repo/shared/lib/superbase/supabaseClient";
 import { useAppSelector } from "@repo/shared/redux/hooks";
 import { selectUser } from "@repo/shared/redux/slices/user/userSlice";
 import { userSupaType } from "@repo/shared/types/auth";
+import { postHHB, updateHHB } from "@repo/shared/lib/superbase/tables/hhb";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -62,8 +62,8 @@ export default function HHBCard(props: any) {
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    if (user === null) return toast.error(`Please login to save your ${type}.`);
-    const { id } = user as userSupaType;
+    const message = t("toast.login_required");
+    if (user === null) return toast.error(message);
 
     if (
       data.firstname === helpData?.firstname &&
@@ -72,6 +72,7 @@ export default function HHBCard(props: any) {
     )
       return toast.error("No change detected.");
 
+    const { id } = user as userSupaType;
     const payload = {
       user_id: id,
       type: type,
@@ -83,23 +84,17 @@ export default function HHBCard(props: any) {
     let errHelp;
 
     if (editStatus) {
-      const { error } = await supabase
-        .from("home_helps")
-        .update(payload)
-        .eq("type", type)
-        .eq("user_id", id);
-
+      const error = await updateHHB(payload);
       errHelp = error;
     } else {
-      const { error } = await supabase.from("home_helps").upsert(payload);
+      const error = await postHHB(payload);
       errHelp = error;
     }
 
-    if (errHelp) {
-      toast.error("Failed to submit: " + errHelp.message);
-    } else {
+    if (errHelp) toast.error(t("toast.failed_to_submit") + errHelp.message);
+    else {
       setHelpData(payload);
-      toast.success("Form submitted and saved to Supabase!");
+      toast.success(t("toast.form_submitted"));
       // form.reset();
     }
   }

@@ -33,7 +33,10 @@
   "toast": {
     "success": "Success",
     "error": "Error",
-    "login_required": "Please login to save your contact."
+    "login_required": "Please login to save your contact.",
+    "failed_to_submit": "Failed to submit: ",
+    "form_submitted": "Form submitted and saved!",
+    "shared_contact_saved": "Shared contact saved successfully!"
   },
 
   "google": "Google",

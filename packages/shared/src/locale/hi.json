@@ -26,9 +26,12 @@
   },
 
   "toast": {
-    "success": "Success",
-    "error": "Error",
-    "login_required": "नंबर सेव करने के लिए लॉगिन करें"
+    "success": "सफलता!",
+    "error": "आपकी त्रुटि!",
+    "login_required": "नंबर सेव करने के लिए लॉगिन करें",
+    "failed_to_submit": "सबमिट नहीं हो पाया: ",
+    "form_submitted": "फॉर्म भेजा गया और सुरक्षित कर लिया गया!",
+    "shared_contact_saved": "शेयर किया गया संपर्क सुरक्षित कर लिया गया!"
   },
 
   "google": "गूगल",

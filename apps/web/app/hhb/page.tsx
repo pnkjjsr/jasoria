@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import { useSearchParams, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import * as motion from "motion/react-client";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -27,6 +28,8 @@ import { Button } from "@/components/ui/button";
 import { HHB_TYPE } from "@repo/shared/const/hhb";
 import { useAppSelector } from "@repo/shared/redux/hooks";
 import { selectUser } from "@repo/shared/redux/slices/user/userSlice";
+import { userSupaType } from "@repo/shared/types/auth";
+import { postHHB } from "@repo/shared/lib/superbase/tables/hhb";
 
 import PageHeader from "@/layout/headers/page";
 import FeatureForm from "@/components/cards/HHB_Feature/FeatureForm";
@@ -34,12 +37,10 @@ import PreviewHHB from "@/components/cards/HHB_Feature/Preview";
 
 export default function HHB() {
   const t = useTranslations();
-
-  // Move all hooks to top level to avoid "Rendered fewer hooks than expected" error
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
+  const router = useRouter();
   const user = useAppSelector(selectUser);
 
+  const searchParams = useSearchParams();
   const sharedBy = searchParams?.get("user_id");
   const type = searchParams?.get("type");
   const firstname = searchParams?.get("firstname");
@@ -117,14 +118,27 @@ export default function HHB() {
   };
 
   const renderHHBPreivew = () => {
-    const helpData = { sharedBy, type, firstname, lastname, phonenumber };
-    const fullPath = `${pathname}?${searchParams?.toString()}`;
+    let helpData = { sharedBy, type, firstname, lastname, phonenumber };
 
-    sessionStorage.setItem("redirectURL", fullPath);
-
-    const handleSaveContact = () => {
+    const handleSaveContact = async () => {
       const message = t("toast.login_required");
       if (user === null) return toast.error(message);
+
+      const payload = {
+        user_id: (user as userSupaType)?.id,
+        type: type,
+        phonenumber: phonenumber,
+        firstname: firstname,
+        lastname: lastname,
+        sharedby: sharedBy,
+      };
+
+      const error = await postHHB(payload);
+      if (error)
+        return toast.error(t("toast.failed_to_submit") + error.message);
+      toast.success(t("toast.shared_contact_saved"));
+
+      router.push("/hhb");
     };
 
     return (
