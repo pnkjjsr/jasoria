@@ -14,7 +14,11 @@
       "@/redux/*": ["./src/redux/*"],
       "@/styles/*": ["./src/styles/*"]
     },
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "noEmit": true,
+    "skipLibCheck": true
   },
   "include": [
     "**/*.ts",

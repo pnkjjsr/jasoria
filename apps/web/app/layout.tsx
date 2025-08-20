@@ -35,8 +35,6 @@ export const metadata: Metadata = {
     "share helpers",
     "find trusted helpers",
   ],
-  viewport:
-    "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
   robots: "index, follow",
   referrer: "origin-when-cross-origin",
   openGraph: {
