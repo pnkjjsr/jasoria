@@ -21,8 +21,41 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Jasoria",
-  description: "Practical Solutions for Everyday Problems",
+  authors: [{ name: "Pankaj Jasoria" }],
+  applicationName: "Jasoria",
+  title: "House Help Book | Find & Share Trusted Helpers",
+  description:
+    "Store and share trusted contacts for house help like maids, cooks, plumbers, and electricians. Simplify your daily life with House Help Book.",
+  keywords: [
+    "maid",
+    "cook",
+    "plumber",
+    "electrician",
+    "house help contacts",
+    "share helpers",
+    "find trusted helpers",
+  ],
+  viewport:
+    "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+  robots: "index, follow",
+  referrer: "origin-when-cross-origin",
+  openGraph: {
+    siteName: "Jasoria",
+    title: "House Help Book | Find & Share Trusted Helpers",
+    description:
+      "Keep all your house help contacts in one place and share them with friends & family.",
+    type: "website",
+    locale: "en-US",
+    url: "https://househelpbook.com",
+    images: [
+      {
+        url: "https://househelpbook.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "House Help Book | Find & Share Trusted Helpers",
+      },
+    ],
+  },
 };
 
 export default async function RootLayout({
