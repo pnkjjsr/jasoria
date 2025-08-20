@@ -118,7 +118,7 @@ export default function HHB() {
   };
 
   const renderHHBPreivew = () => {
-    let helpData = { sharedBy, type, firstname, lastname, phonenumber };
+    const helpData = { sharedBy, type, firstname, lastname, phonenumber };
 
     const handleSaveContact = async () => {
       const message = t("toast.login_required");
