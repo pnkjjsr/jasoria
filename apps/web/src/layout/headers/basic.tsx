@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
+import { analytics } from "@repo/shared/lib/firebase/firebaseClient";
 import Logo from "@repo/shared/components/logos/header";
 import UserLoginButton from "@repo/shared/components/auth/UserLoginButton";
 import getTheme, { setTheme } from "@repo/shared/utils/theme";
@@ -18,6 +19,7 @@ export default function Header() {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
+    analytics;
     const getThemeFromStorage = getTheme();
 
     if (getThemeFromStorage === "dark") {
