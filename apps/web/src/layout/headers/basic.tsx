@@ -19,7 +19,6 @@ export default function Header() {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    console.log(process.env.NODE_ENV);
     if (process.env.NODE_ENV === "production") analytics;
 
     const getThemeFromStorage = getTheme();
