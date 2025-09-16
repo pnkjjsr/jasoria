@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
+import { Analytics } from "@vercel/analytics/react";
 
 import { StoreProvider } from "@repo/shared/redux/StoreProvider";
 import AuthStateHandler from "@repo/shared/components/auth/AuthStateHandler";
@@ -78,6 +79,7 @@ export default async function RootLayout({
 
             <main>{children}</main>
           </NextIntlClientProvider>
+          {process.env.NODE_ENV === "production" && <Analytics />}
         </body>
       </html>
     </StoreProvider>
